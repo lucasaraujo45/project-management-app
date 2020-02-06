@@ -2,12 +2,12 @@ import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
 
-import { Home } from "./views/home";
+// import { Home } from "./views/home";
 import { Landing } from "./views/landing";
 import { Login } from "./views/login";
 import { Dashboard } from "./views/dashboard";
-import { Demo } from "./views/demo";
-import { Single } from "./views/single";
+// import { Demo } from "./views/demo";
+// import { Single } from "./views/single";
 import injectContext from "./store/appContext";
 
 import { Navbar } from "./component/navbar";
@@ -25,9 +25,9 @@ const Layout = () => {
 				<ScrollToTop>
 					<Navbar />
 					<Switch>
-						<Route path="/" component={Landing} />
-						<Route path="/login" component={Login} />
-						<Route path="/dashboard" component={Dashboard} />
+						<Route exact path="/" component={Landing} />
+						<Route exact path="/login" component={Login} />
+						<Route exact path="/dashboard" component={Dashboard} />
 						<Route render={() => <h1>Not found!</h1>} />
 					</Switch>
 					<Footer />

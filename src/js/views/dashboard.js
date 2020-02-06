@@ -1,7 +1,7 @@
 import React from "react";
 // import "../../styles/home.scss";
 
-export const Home = () => (
+export const Dashboard = () => (
 	<div className="text-center mt-5">
 		<h1>this is the crm view</h1>
 
