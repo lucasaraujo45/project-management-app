@@ -5,6 +5,7 @@ import ScrollToTop from "./component/scrollToTop";
 // import { Home } from "./views/home";
 import { Landing } from "./views/landing";
 import { Login } from "./views/login";
+import { SignUp } from "./views/signup";
 import { Dashboard } from "./views/dashboard";
 // import { Demo } from "./views/demo";
 // import { Single } from "./views/single";
@@ -26,6 +27,7 @@ const Layout = () => {
 					<Navbar />
 					<Switch>
 						<Route exact path="/" component={Landing} />
+						<Route path="/signup" component={SignUp} />
 						<Route path="/login" component={Login} />
 						<Route path="/dashboard" component={Dashboard} />
 						<Route render={() => <h1>Not found!</h1>} />

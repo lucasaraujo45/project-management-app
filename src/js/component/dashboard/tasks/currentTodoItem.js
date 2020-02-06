@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import { Context } from "../../../store/appContext";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export const CurrentTodoItem = () => {
 	const { store, actions } = useContext(Context);
@@ -30,14 +29,6 @@ export const CurrentTodoItem = () => {
 							onClick={item.done ? () => actions.unsetDone(index) : () => actions.setDone(index)}>
 							{item.todo}
 						</span>
-						<FontAwesomeIcon
-							icon="trash-alt"
-							className="float-right"
-							onClick={() => actions.deleteTodo(index)}
-							data-toggle="tooltip"
-							data-placement="bottom"
-							title="Delete Todo Item"
-						/>
 					</li>
 				);
 			})}
