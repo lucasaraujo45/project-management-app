@@ -26,8 +26,8 @@ const Layout = () => {
 					<Navbar />
 					<Switch>
 						<Route exact path="/" component={Landing} />
-						<Route exact path="/login" component={Login} />
-						<Route exact path="/dashboard" component={Dashboard} />
+						<Route path="/login" component={Login} />
+						<Route path="/dashboard" component={Dashboard} />
 						<Route render={() => <h1>Not found!</h1>} />
 					</Switch>
 					<Footer />
