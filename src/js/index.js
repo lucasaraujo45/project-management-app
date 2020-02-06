@@ -11,5 +11,7 @@ import "../styles/index.scss";
 //import your own components
 import Layout from "./layout";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 //render your react application
 ReactDOM.render(<Layout />, document.querySelector("#app"));
