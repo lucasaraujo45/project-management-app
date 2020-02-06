@@ -22,9 +22,9 @@ export const Layout = () => {
 				<ScrollToTop>
 					<Navbar />
 					<Switch>
-						<Route exact path="/" component={Home} />
-						<Route path="/demo" component={Demo} />
-						<Route path="/single/:theid" component={Single} />
+						<Route exact path="/" component={Landing} />
+						<Route path="/login" component={Login} />
+						<Route path="/dashboard" component={Dashboard} />
 						<Route render={() => <h1>Not found!</h1>} />
 					</Switch>
 					<Footer />
