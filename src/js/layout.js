@@ -7,6 +7,7 @@ import { Landing } from "./views/landing";
 import { Login } from "./views/login";
 import { SignUp } from "./views/signup";
 import { Dashboard } from "./views/dashboard";
+
 // import { Demo } from "./views/demo";
 // import { Single } from "./views/single";
 import injectContext from "./store/appContext";
