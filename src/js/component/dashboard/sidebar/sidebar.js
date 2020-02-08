@@ -9,6 +9,10 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import InboxIcon from "@material-ui/icons/MoveToInbox";
 import MailIcon from "@material-ui/icons/Mail";
+import FormatListNumberedIcon from "@material-ui/icons/FormatListNumbered";
+import PeopleIcon from "@material-ui/icons/People";
+import DateRangeIcon from "@material-ui/icons/DateRange";
+import ChatIcon from "@material-ui/icons/Chat";
 
 const useStyles = makeStyles({
 	list: {
@@ -36,6 +40,29 @@ export const SideBar = () => {
 		setState({ ...state, [side]: open });
 	};
 
+	const menuItems = [
+		{
+			label: "Project Tasks",
+			url: "",
+			icon: <FormatListNumberedIcon />
+		},
+		{
+			label: "Team members",
+			url: "",
+			icon: <PeopleIcon />
+		},
+		{
+			label: "Calendar",
+			url: "",
+			icon: <DateRangeIcon />
+		},
+		{
+			label: "Chat",
+			url: "",
+			icon: <ChatIcon />
+		}
+	];
+
 	const sideList = side => (
 		<div
 			className={classes.list}
@@ -43,10 +70,10 @@ export const SideBar = () => {
 			onClick={toggleDrawer(side, false)}
 			onKeyDown={toggleDrawer(side, false)}>
 			<List>
-				{["Project Tasks", "Team members", "Calendar", "Drafts"].map((text, index) => (
-					<ListItem button key={text}>
-						<ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-						<ListItemText primary={text} />
+				{menuItems.map((item, index) => (
+					<ListItem button key={item.label}>
+						<ListItemIcon>{item.icon}</ListItemIcon>
+						<ListItemText primary={item.label} />
 					</ListItem>
 				))}
 			</List>
