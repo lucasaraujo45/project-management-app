@@ -4,7 +4,7 @@ import Dropdown from "react-bootstrap/Dropdown";
 
 export const Navbar = () => {
 	return (
-		<nav className="navbar navbar-light bg-light mb-3">
+		<nav className="navbar navbar-light bg-light mb-0">
 			<Link to="/">
 				<span className="navbar-brand mb-0 h1">Project Managment tool</span>
 			</Link>

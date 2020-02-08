@@ -1,6 +1,10 @@
-body{
+.backgroundDiv{
     background-image: url("../img/backroundimg.jpeg");
-    background-position: left 35px bottom 10px;
+    background-position: left 35px bottom 0px;
+    height: 100%;
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
 }
 
 .landingMainDiv h2, p{
