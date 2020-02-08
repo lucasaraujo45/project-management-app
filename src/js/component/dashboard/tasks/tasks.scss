@@ -1,6 +1,3 @@
-/* 
-    General Styles
-*/
 
 .fa-trash-alt{ 
     font-size: 1.5rem; 
@@ -17,8 +14,9 @@ li:hover .fa-trash-alt{opacity: 1;}
 
 .done{ 
     text-decoration: line-through; 
-    text-decoration-style: wavy;
+    text-decoration-style: strike;
     text-decoration-color: red;
+    opacity: 50%;
 }
 
 
@@ -99,4 +97,18 @@ li{
 
 .itemText,.fa-trash-alt{
     cursor: pointer;
+}
+
+.taskModal{
+width: 600px;
+height: 400px;
+margin: auto;
+padding: 20px;
+background-color: white;
+}
+
+.taskButton{
+right: 10px;
+float: right;
+margin-bottom: 20px;
 }
