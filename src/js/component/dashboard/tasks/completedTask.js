@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { Context } from "../../../store/appContext";
+import { getState } from "../../store/flux.js";
 
 export const CurrentTodoItem = () => {
 	const { store, actions } = useContext(Context);
