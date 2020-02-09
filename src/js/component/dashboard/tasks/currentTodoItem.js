@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { Context } from "../../../store/appContext";
+import { Button } from "@material-ui/core";
 
 export const CurrentTodoItem = () => {
 	const { store, actions } = useContext(Context);
@@ -23,12 +24,21 @@ export const CurrentTodoItem = () => {
 								className="checkmark"
 								onClick={item.done ? () => actions.unsetDone(index) : () => actions.setDone(index)}
 							/>
-						</div>
+						</div>{" "}
 						<span
 							className="ml-5 itemText"
 							onClick={item.done ? () => actions.unsetDone(index) : () => actions.setDone(index)}>
 							{item.todo}
 						</span>
+						<Button
+							className="float-right"
+							onClick={() => actions.completeTodo(index)}
+							data-toggle="tooltip"
+							data-placement="bottom"
+							variant="outlined"
+							color="secondary">
+							Complete
+						</Button>
 					</li>
 				);
 			})}

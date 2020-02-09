@@ -10,7 +10,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 					todo: "Walk the dog",
 					done: false
 				}
-			]
+			],
+			completed: []
 		},
 		actions: {
 			addTodo: (item, element) => {
@@ -21,9 +22,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 				});
 				setStore({ store });
 			},
-			deleteTodo: (index, element) => {
+			completeTodo: (item, index, element) => {
 				let store = getStore();
 				store.list.splice(index, 1);
+				store.completed.push((store.list.done = true));
 				setStore({ store });
 			},
 			setDone: (index, element) => {

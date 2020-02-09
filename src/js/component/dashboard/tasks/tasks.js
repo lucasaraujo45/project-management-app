@@ -26,7 +26,7 @@ export const Tasks = props => {
 	const pluralize = count => (count > 1 ? `There are ${count} todos.` : `There is ${count} todo.`);
 
 	return (
-		<div className="container mt-5">
+		<div>
 			<Card borderRadius={16} className={classes.card} variant="outlined">
 				<div className="m-4">
 					<Grid container spacing={3}>
