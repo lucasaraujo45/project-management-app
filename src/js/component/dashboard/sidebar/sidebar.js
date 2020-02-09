@@ -1,9 +1,17 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
+import clsx from "clsx";
+import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
-import Button from "@material-ui/core/Button";
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
 import List from "@material-ui/core/List";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import Typography from "@material-ui/core/Typography";
 import Divider from "@material-ui/core/Divider";
+import IconButton from "@material-ui/core/IconButton";
+import MenuIcon from "@material-ui/icons/Menu";
+import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
+import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
@@ -13,33 +21,85 @@ import FormatListNumberedIcon from "@material-ui/icons/FormatListNumbered";
 import PeopleIcon from "@material-ui/icons/People";
 import DateRangeIcon from "@material-ui/icons/DateRange";
 import ChatIcon from "@material-ui/icons/Chat";
+import DoubleArrowRoundedIcon from "@material-ui/icons/DoubleArrowRounded";
+import { ProfileMenu } from "./profileMenu";
 
-const useStyles = makeStyles({
-	list: {
-		width: 250
+const drawerWidth = 240;
+
+const useStyles = makeStyles(theme => ({
+	root: {
+		display: "flex"
 	},
-	fullList: {
-		width: "auto"
+	appBar: {
+		zIndex: theme.zIndex.drawer + 1,
+		transition: theme.transitions.create(["width", "margin"], {
+			easing: theme.transitions.easing.sharp,
+			duration: theme.transitions.duration.leavingScreen
+		})
+	},
+	appBarShift: {
+		marginLeft: drawerWidth,
+		width: `calc(100% - ${drawerWidth}px)`,
+		transition: theme.transitions.create(["width", "margin"], {
+			easing: theme.transitions.easing.sharp,
+			duration: theme.transitions.duration.enteringScreen
+		})
+	},
+	menuButton: {
+		marginRight: 36
+	},
+	hide: {
+		display: "none"
+	},
+	drawer: {
+		width: drawerWidth,
+		flexShrink: 0,
+		whiteSpace: "nowrap"
+	},
+	drawerOpen: {
+		width: drawerWidth,
+		transition: theme.transitions.create("width", {
+			easing: theme.transitions.easing.sharp,
+			duration: theme.transitions.duration.enteringScreen
+		})
+	},
+	drawerClose: {
+		transition: theme.transitions.create("width", {
+			easing: theme.transitions.easing.sharp,
+			duration: theme.transitions.duration.leavingScreen
+		}),
+		overflowX: "hidden",
+		width: theme.spacing(7) + 1,
+		[theme.breakpoints.up("sm")]: {
+			width: theme.spacing(9) + 1
+		}
+	},
+	toolbar: {
+		display: "flex",
+		alignItems: "center",
+		justifyContent: "flex-end",
+		padding: theme.spacing(0, 1),
+		...theme.mixins.toolbar
+	},
+	content: {
+		flexGrow: 1,
+		padding: theme.spacing(3)
 	}
-});
+}));
 
 export const SideBar = () => {
 	const classes = useStyles();
-	const [state, setState] = React.useState({
-		top: false,
-		left: false,
-		bottom: false,
-		right: false
-	});
+	const theme = useTheme();
+	const [open, setOpen] = React.useState(false);
 
-	const toggleDrawer = (side, open) => event => {
-		if (event.type === "keydown" && (event.key === "Tab" || event.key === "Shift")) {
-			return;
-		}
-
-		setState({ ...state, [side]: open });
+	const handleDrawerOpen = () => {
+		setOpen(true);
 	};
 
+	const handleDrawerClose = () => {
+		setOpen(false);
+	};
+	//Items for the side menu
 	const menuItems = [
 		{
 			label: "Project Tasks",
@@ -63,66 +123,71 @@ export const SideBar = () => {
 		}
 	];
 
-	const sideList = side => (
-		<div
-			className={classes.list}
-			role="presentation"
-			onClick={toggleDrawer(side, false)}
-			onKeyDown={toggleDrawer(side, false)}>
-			<List>
-				{menuItems.map((item, index) => (
-					<ListItem button key={item.label}>
-						<ListItemIcon>{item.icon}</ListItemIcon>
-						<ListItemText primary={item.label} />
-					</ListItem>
-				))}
-			</List>
-			<Divider />
-			<List>
-				{["Completed", "In Progress", "Removed"].map((text, index) => (
-					<ListItem button key={text}>
-						<ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-						<ListItemText primary={text} />
-					</ListItem>
-				))}
-			</List>
-		</div>
-	);
-
-	const fullList = side => (
-		<div
-			className={classes.fullList}
-			role="presentation"
-			onClick={toggleDrawer(side, false)}
-			onKeyDown={toggleDrawer(side, false)}>
-			<List>
-				{["Project Tasks", "Team members", "Calendar", "Drafts"].map((text, index) => (
-					<ListItem button key={text}>
-						<ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-						<ListItemText primary={text} />
-					</ListItem>
-				))}
-			</List>
-			<Divider />
-			<List>
-				{["Completed", "In Progress", "Removed"].map((text, index) => (
-					<ListItem button key={text}>
-						<ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-						<ListItemText primary={text} />
-					</ListItem>
-				))}
-			</List>
-		</div>
-	);
-
 	return (
-		<div>
-			<Button onClick={toggleDrawer("left", true)}>
-				<i className="far fa-arrow-alt-circle-right h3" />
-			</Button>
-			<Drawer open={state.left} onClose={toggleDrawer("left", false)}>
-				{sideList("left")}
+		<div className={classes.root}>
+			<CssBaseline />
+			<AppBar
+				position="fixed"
+				className={clsx(classes.appBar, {
+					[classes.appBarShift]: open
+				})}>
+				<Toolbar>
+					<IconButton
+						color="inherit"
+						aria-label="open drawer"
+						onClick={handleDrawerOpen}
+						edge="start"
+						className={clsx(classes.menuButton, {
+							[classes.hide]: open
+						})}>
+						<DoubleArrowRoundedIcon />
+					</IconButton>
+					<Typography variant="h6" noWrap>
+						Project Management Tool
+					</Typography>
+					<ProfileMenu />
+				</Toolbar>
+			</AppBar>
+			<Drawer
+				variant="permanent"
+				className={clsx(classes.drawer, {
+					[classes.drawerOpen]: open,
+					[classes.drawerClose]: !open
+				})}
+				classes={{
+					paper: clsx({
+						[classes.drawerOpen]: open,
+						[classes.drawerClose]: !open
+					})
+				}}>
+				<div className={classes.toolbar}>
+					<IconButton onClick={handleDrawerClose}>
+						{theme.direction === "rtl" ? <ChevronRightIcon /> : <ChevronLeftIcon />}
+					</IconButton>
+				</div>
+				<Divider />
+				<List>
+					{menuItems.map((item, index) => (
+						<ListItem button key={item.label}>
+							<ListItemIcon>{item.icon}</ListItemIcon>
+							<ListItemText primary={item.label} />
+						</ListItem>
+					))}
+				</List>
+				<Divider />
+				<List>
+					{["All mail", "Trash", "Spam"].map((text, index) => (
+						<ListItem button key={text}>
+							<ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+							<ListItemText primary={text} />
+						</ListItem>
+					))}
+				</List>
 			</Drawer>
+			<main className={classes.content}>
+				<div className={classes.toolbar} />
+				<Typography paragraph />
+			</main>
 		</div>
 	);
 };
