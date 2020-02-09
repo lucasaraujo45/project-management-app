@@ -4,6 +4,7 @@ import { CurrentTodoItem } from "./currentTodoItem";
 import "./tasks.scss";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
+import Grid from "@material-ui/core/Grid";
 
 const useStyles = makeStyles({
 	card: {
@@ -23,7 +24,14 @@ export const Tasks = props => {
 		<div className="container mt-5">
 			<Card borderRadius={16} className={classes.card} variant="outlined">
 				<div className="m-4">
-					<CreateTodo />
+					<Grid container spacing={3}>
+						<Grid item xs={6}>
+							<h2>Tasks</h2>
+						</Grid>
+						<Grid item xs={6}>
+							<CreateTodo />
+						</Grid>
+					</Grid>
 					<CurrentTodoItem />
 				</div>
 			</Card>
