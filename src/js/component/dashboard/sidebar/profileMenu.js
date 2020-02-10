@@ -19,7 +19,7 @@ export const ProfileMenu = () => {
 	};
 
 	return (
-		<div className="ml-auto">
+		<div>
 			<Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
 				<AccountCircleRoundedIcon style={{ color: grey[50] }} fontSize="large" />
 			</Button>
