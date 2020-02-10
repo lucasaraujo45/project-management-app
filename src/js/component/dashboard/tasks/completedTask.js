@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { Context } from "../../../store/appContext";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
+import Grid from "@material-ui/core/Grid";
 
 const useStyles = makeStyles({
 	card: {
@@ -20,33 +21,23 @@ export const CompletedTasks = () => {
 
 	return (
 		<Card borderRadius={16} className={classes.card} variant="outlined">
-			<ul className="list-unstyled">
-				{store.completed.map((item, index) => {
-					return (
-						<li className={item.done ? "todoItem done" : "todoItem"} key={index}>
-							<div
-								className="container"
-								onClick={item.done ? () => actions.unsetDone(index) : () => actions.setDone(index)}>
-								<input
-									type="checkbox"
-									value={item.done}
-									onChange={item.done ? () => actions.unsetDone(index) : () => actions.setDone(index)}
-									checked={item.done}
-								/>
-								<span
-									className="checkmark"
-									onClick={item.done ? () => actions.unsetDone(index) : () => actions.setDone(index)}
-								/>
-							</div>
-							<span
-								className="ml-5 itemText"
-								onClick={item.done ? () => actions.unsetDone(index) : () => actions.setDone(index)}>
-								{item.todo}
-							</span>
-						</li>
-					);
-				})}
-			</ul>
+			<div className="m-4">
+				<Grid container spacing={3}>
+					<Grid item xs={6}>
+						<h2>Completed Tasks</h2>
+					</Grid>
+					<Grid item xs={6} />
+				</Grid>
+				<ul className="list-unstyled">
+					{store.completed.map((item, index) => {
+						return (
+							<li className={item.done ? "todoItem done" : "todoItem"} key={index}>
+								<span className="ml-5 itemText">{item.todo}</span>
+							</li>
+						);
+					})}
+				</ul>
+			</div>
 		</Card>
 	);
 };
