@@ -14,9 +14,7 @@ export const CurrentTodoItem = () => {
 			{store.list.map((item, index) => {
 				return (
 					<li className={item.alarm ? "todoItem alarm" : "todoItem"} key={index}>
-						<div
-							className="container"
-							onClick={item.alarm ? () => actions.unsetalarm(index) : () => actions.setalarm(index)}>
+						<div className="container">
 							<MenuIcon />
 							<span
 								className="ml-5 itemText"
