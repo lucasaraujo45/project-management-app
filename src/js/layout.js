@@ -4,7 +4,8 @@ import ScrollToTop from "./component/scrollToTop";
 
 // import { Home } from "./views/home";
 import { Landing } from "./views/landing";
-import { Login } from "./views/login";
+// import { Login } from "./views/login";
+import { LoginMaterial } from "./views/loginMaterial";
 import { SignUp } from "./views/signup";
 import { Dashboard } from "./views/dashboard";
 
@@ -29,7 +30,7 @@ const Layout = () => {
 					<Switch>
 						<Route exact path="/" component={Landing} />
 						<Route path="/signup" component={SignUp} />
-						<Route path="/login" component={Login} />
+						<Route path="/login" component={LoginMaterial} />
 						<Route path="/dashboard" component={Dashboard} />
 						<Route render={() => <h1>Not found!</h1>} />
 					</Switch>
