@@ -13,10 +13,8 @@ export const CurrentTodoItem = () => {
 		<ul className="list-unstyled">
 			{store.list.map((item, index) => {
 				return (
-					<li className={item.alarm ? "todoItem alarm" : "todoItem"} key={index}>
-						<div
-							className="container"
-							onClick={item.alarm ? () => actions.unsetalarm(index) : () => actions.setalarm(index)}>
+					<li key={index}>
+						<div className="container">
 							<MenuIcon />
 							<span
 								className="ml-5 itemText"
@@ -33,9 +31,9 @@ export const CurrentTodoItem = () => {
 								color="secondary">
 								Complete
 							</Button>
-							<IconButton className="float-right mr-4">
+							<IconButton className="checkmark float-right mr-4">
 								<AlarmIcon
-									className="checkmark mt-2"
+									className={item.alarm ? "todoItem alarm" : "todoItem"}
 									onClick={
 										item.alarm ? () => actions.unsetalarm(index) : () => actions.setalarm(index)
 									}

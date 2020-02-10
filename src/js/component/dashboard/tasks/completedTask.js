@@ -4,6 +4,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import Grid from "@material-ui/core/Grid";
 import AssignmentTurnedInIcon from "@material-ui/icons/AssignmentTurnedIn";
+import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
+import { Button, IconButton } from "@material-ui/core";
 
 const useStyles = makeStyles({
 	card: {
@@ -37,6 +39,12 @@ export const CompletedTasks = () => {
 							<li className={item.alarm ? "todoItem alarm" : "todoItem"} key={index}>
 								<AssignmentTurnedInIcon />
 								<span className="ml-5 itemText">{item.todo}</span>
+								<IconButton className="float-right mr-4">
+									<DeleteForeverIcon
+										className="checkmark mt-2"
+										onClick={() => actions.removeItem(index)}
+									/>
+								</IconButton>
 							</li>
 						);
 					})}

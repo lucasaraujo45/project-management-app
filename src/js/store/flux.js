@@ -3,21 +3,17 @@ const getState = ({ getStore, getActions, setStore }) => {
 		store: {
 			list: [
 				{
-					todo: "Brush your teeth",
+					todo: "add message showing the day of the week",
 					alarm: false
 				},
 				{
 					todo: "Walk the dog",
 					alarm: false
-				},
-				{
-					todo: "Create bell notifications",
-					alarm: false
 				}
 			],
 			completed: [
 				{
-					todo: "Create bell notifications",
+					todo: "Create bell notificationsooo",
 					alarm: false
 				}
 			]
@@ -48,6 +44,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 			unsetalarm: (index, element) => {
 				let store = getStore();
 				store.list[index].alarm = false;
+				setStore({ store });
+			},
+			removeItem: index => {
+				let store = getStore();
+				store.completed.splice(index, 1);
 				setStore({ store });
 			}
 		}
