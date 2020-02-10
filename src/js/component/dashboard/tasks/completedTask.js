@@ -26,10 +26,10 @@ export const CompletedTasks = () => {
 		<Card borderRadius={16} className={classes.card} variant="outlined">
 			<div className="m-4">
 				<Grid container spacing={3}>
-					<Grid item xs={4}>
+					<Grid item xs={7}>
 						<h2>Completed Tasks</h2>
 					</Grid>
-					<Grid item xs={4}>
+					<Grid item xs={5}>
 						<span className="float-right">{pluralize(store.completed.length)}</span>
 					</Grid>
 				</Grid>
