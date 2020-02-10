@@ -22,10 +22,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 				});
 				setStore({ store });
 			},
-			completeTodo: (item, index, element) => {
+			completeTodo: id => {
 				let store = getStore();
-				store.list.splice(index, 1);
-				store.completed.push((store.list.done = true));
+				store.completed.push(store.list[id]);
+				store.list = store.list.filter((el, index) => {
+					return id !== index;
+				});
+				console.log(store.complete);
 				setStore({ store });
 			},
 			setDone: (index, element) => {
@@ -41,5 +44,4 @@ const getState = ({ getStore, getActions, setStore }) => {
 		}
 	};
 };
-
 export default getState;

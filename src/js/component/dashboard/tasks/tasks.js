@@ -23,7 +23,7 @@ export const Tasks = props => {
 
 	const { store, actions } = useContext(Context);
 
-	const pluralize = count => (count > 1 ? `There are ${count} todos.` : `There is ${count} todo.`);
+	const pluralize = count => (count > 1 ? `There are ${count} tasks` : `There is ${count} task`);
 
 	return (
 		<div>
