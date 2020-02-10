@@ -20,10 +20,10 @@ export const Landing = () => (
 						A mobile app is a computer program designed to run on a mobile device such as a phone/tablet or
 						watch.
 					</p>
-					<a href="#" className="btn btn-primary btn-lg active mr-3" role="button" aria-pressed="true">
+					<a href="/signup" className="btn btn-primary btn-lg active mr-3" role="button" aria-pressed="true">
 						Sign up
 					</a>
-					<a href="#" className="btn btn-primary btn-lg active" role="button" aria-pressed="true">
+					<a href="/login" className="btn btn-primary btn-lg active" role="button" aria-pressed="true">
 						Login
 					</a>
 				</Grid>

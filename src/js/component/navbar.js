@@ -9,10 +9,6 @@ export const Navbar = () => {
 				<span className="navbar-brand mb-0 h1">Project Managment tool</span>
 			</Link>
 			<div className="ml-auto d-flex">
-				<Link to="/dashboard">
-					<button className="btn btn-info mr-3">dashboard</button>
-				</Link>
-
 				<Dropdown alignRight>
 					<Dropdown.Toggle variant="success" id="dropdown-basic">
 						Sign in

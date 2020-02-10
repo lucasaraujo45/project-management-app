@@ -28,6 +28,7 @@ import { ProfileMenu } from "./profileMenu";
 import Grid from "@material-ui/core/Grid";
 import { Tasks } from "../tasks/tasks";
 import { CompletedTasks } from "../tasks/completedTask";
+import { Calendar } from "../../calendar/calendar";
 import { Box } from "@material-ui/core";
 
 const drawerWidth = 240;
@@ -119,7 +120,7 @@ export const SideBar = () => {
 		},
 		{
 			label: "Calendar",
-			url: "",
+			url: "/calendar",
 			icon: <DateRangeIcon />
 		},
 		{
@@ -181,7 +182,7 @@ export const SideBar = () => {
 				<Divider />
 				<List>
 					{menuItems.map((item, index) => (
-						<ListItem button key={item.label}>
+						<ListItem button key={item.label} href={item.url}>
 							<ListItemIcon>{item.icon}</ListItemIcon>
 							<ListItemText primary={item.label} />
 						</ListItem>
@@ -209,6 +210,9 @@ export const SideBar = () => {
 					</Grid>
 					<Typography paragraph />
 				</div>
+				<Box mt={2}>
+					<Calendar />
+				</Box>
 			</main>
 		</div>
 	);
