@@ -23,6 +23,9 @@ import DateRangeIcon from "@material-ui/icons/DateRange";
 import ChatIcon from "@material-ui/icons/Chat";
 import DoubleArrowRoundedIcon from "@material-ui/icons/DoubleArrowRounded";
 import { ProfileMenu } from "./profileMenu";
+import Grid from "@material-ui/core/Grid";
+import { Tasks } from "../tasks/tasks";
+import { CompletedTasks } from "../tasks/completedTask";
 
 const drawerWidth = 240;
 
@@ -176,7 +179,7 @@ export const SideBar = () => {
 				</List>
 				<Divider />
 				<List>
-					{["All mail", "Trash", "Spam"].map((text, index) => (
+					{["All mail", "Trash"].map((text, index) => (
 						<ListItem button key={text}>
 							<ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
 							<ListItemText primary={text} />
@@ -185,8 +188,17 @@ export const SideBar = () => {
 				</List>
 			</Drawer>
 			<main className={classes.content}>
-				<div className={classes.toolbar} />
-				<Typography paragraph />
+				<div className={classes.toolbar}>
+					<Grid container spacing={3}>
+						<Grid item xs={6}>
+							<Tasks />
+						</Grid>
+						<Grid item xs={6}>
+							<CompletedTasks />
+						</Grid>
+					</Grid>
+					<Typography paragraph />
+				</div>
 			</main>
 		</div>
 	);
