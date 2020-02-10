@@ -3,7 +3,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 		store: {
 			list: [
 				{
-					todo: "Brush your teeth",
+					todo: "add message showing the day of the week",
 					alarm: false
 				},
 				{
