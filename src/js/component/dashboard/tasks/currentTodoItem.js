@@ -2,6 +2,8 @@ import React, { useContext } from "react";
 import { Context } from "../../../store/appContext";
 import { Button, IconButton } from "@material-ui/core";
 import AlarmIcon from "@material-ui/icons/Alarm";
+import Divider from "@material-ui/core/Divider";
+import MenuIcon from "@material-ui/icons/Menu";
 
 export const CurrentTodoItem = () => {
 	const { store, actions } = useContext(Context);
@@ -15,22 +17,7 @@ export const CurrentTodoItem = () => {
 						<div
 							className="container"
 							onClick={item.alarm ? () => actions.unsetalarm(index) : () => actions.setalarm(index)}>
-							<input
-								type="checkbox"
-								value={item.alarm}
-								onChange={item.alarm ? () => actions.unsetalarm(index) : () => actions.setalarm(index)}
-								checked={item.alarm}
-							/>
-							<IconButton>
-								<AlarmIcon
-									className="checkmark"
-									onClick={
-										item.alarm ? () => actions.unsetalarm(index) : () => actions.setalarm(index)
-									}
-									checked={item.alarm}
-								/>
-							</IconButton>
-
+							<MenuIcon />
 							<span
 								className="ml-5 itemText"
 								onClick={item.alarm ? () => actions.unsetalarm(index) : () => actions.setalarm(index)}>
@@ -46,6 +33,15 @@ export const CurrentTodoItem = () => {
 								color="secondary">
 								Complete
 							</Button>
+							<IconButton className="float-right mr-4">
+								<AlarmIcon
+									className="checkmark mt-2"
+									onClick={
+										item.alarm ? () => actions.unsetalarm(index) : () => actions.setalarm(index)
+									}
+									checked={item.alarm}
+								/>
+							</IconButton>
 						</div>{" "}
 					</li>
 				);

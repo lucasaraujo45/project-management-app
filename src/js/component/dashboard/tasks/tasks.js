@@ -6,6 +6,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import Grid from "@material-ui/core/Grid";
 import { Context } from "../../../store/appContext";
+import Divider from "@material-ui/core/Divider";
 
 const useStyles = makeStyles({
 	card: {
@@ -36,7 +37,6 @@ export const Tasks = props => {
 						<Grid item xs={4}>
 							<span className="float-right">{pluralize(store.list.length)}</span>
 						</Grid>
-
 						<Grid item xs={4}>
 							<CreateTodo />
 						</Grid>
