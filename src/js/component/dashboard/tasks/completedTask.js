@@ -3,6 +3,7 @@ import { Context } from "../../../store/appContext";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import Grid from "@material-ui/core/Grid";
+import AssignmentTurnedInIcon from "@material-ui/icons/AssignmentTurnedIn";
 
 const useStyles = makeStyles({
 	card: {
@@ -31,7 +32,8 @@ export const CompletedTasks = () => {
 				<ul className="list-unstyled">
 					{store.completed.map((item, index) => {
 						return (
-							<li className={item.done ? "todoItem done" : "todoItem"} key={index}>
+							<li className={item.alarm ? "todoItem alarm" : "todoItem"} key={index}>
+								<AssignmentTurnedInIcon />
 								<span className="ml-5 itemText">{item.todo}</span>
 							</li>
 						);

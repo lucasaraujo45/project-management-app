@@ -6,17 +6,14 @@
    -moz-transition: opacity .25s ease-in-out;
    -webkit-transition: opacity .25s ease-in-out;
 }
-.fa-trash-alt path{ fill: gray; }
+
 
 .fa-trash-alt:hover path{ fill: black; }
 
 li:hover .fa-trash-alt{opacity: 1;}
 
-.done{ 
-    text-decoration: line-through; 
-    text-decoration-style: strike;
-    text-decoration-color: red;
-    opacity: 50%;
+.alarm{ 
+    color:green;
 }
 
 

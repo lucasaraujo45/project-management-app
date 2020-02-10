@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { Context } from "../../../store/appContext";
-import { Button } from "@material-ui/core";
+import { Button, IconButton } from "@material-ui/core";
+import AlarmIcon from "@material-ui/icons/Alarm";
 
 export const CurrentTodoItem = () => {
 	const { store, actions } = useContext(Context);
@@ -10,35 +11,42 @@ export const CurrentTodoItem = () => {
 		<ul className="list-unstyled">
 			{store.list.map((item, index) => {
 				return (
-					<li className={item.done ? "todoItem done" : "todoItem"} key={index}>
+					<li className={item.alarm ? "todoItem alarm" : "todoItem"} key={index}>
 						<div
 							className="container"
-							onClick={item.done ? () => actions.unsetDone(index) : () => actions.setDone(index)}>
+							onClick={item.alarm ? () => actions.unsetalarm(index) : () => actions.setalarm(index)}>
 							<input
 								type="checkbox"
-								value={item.done}
-								onChange={item.done ? () => actions.unsetDone(index) : () => actions.setDone(index)}
-								checked={item.done}
+								value={item.alarm}
+								onChange={item.alarm ? () => actions.unsetalarm(index) : () => actions.setalarm(index)}
+								checked={item.alarm}
 							/>
+							<IconButton>
+								<AlarmIcon
+									className="checkmark"
+									onClick={
+										item.alarm ? () => actions.unsetalarm(index) : () => actions.setalarm(index)
+									}
+									checked={item.alarm}
+								/>
+							</IconButton>
+
 							<span
-								className="checkmark"
-								onClick={item.done ? () => actions.unsetDone(index) : () => actions.setDone(index)}
-							/>
+								className="ml-5 itemText"
+								onClick={item.alarm ? () => actions.unsetalarm(index) : () => actions.setalarm(index)}>
+								{item.todo}
+							</span>
+
+							<Button
+								className="float-right"
+								onClick={() => actions.completeTodo(index)}
+								data-toggle="tooltip"
+								data-placement="bottom"
+								variant="outlined"
+								color="secondary">
+								Complete
+							</Button>
 						</div>{" "}
-						<span
-							className="ml-5 itemText"
-							onClick={item.done ? () => actions.unsetDone(index) : () => actions.setDone(index)}>
-							{item.todo}
-						</span>
-						<Button
-							className="float-right"
-							onClick={() => actions.completeTodo(index)}
-							data-toggle="tooltip"
-							data-placement="bottom"
-							variant="outlined"
-							color="secondary">
-							Complete
-						</Button>
 					</li>
 				);
 			})}

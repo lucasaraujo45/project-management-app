@@ -4,21 +4,30 @@ const getState = ({ getStore, getActions, setStore }) => {
 			list: [
 				{
 					todo: "Brush your teeth",
-					done: false
+					alarm: false
 				},
 				{
 					todo: "Walk the dog",
-					done: false
+					alarm: false
+				},
+				{
+					todo: "Create bell notifications",
+					alarm: false
 				}
 			],
-			completed: []
+			completed: [
+				{
+					todo: "Create bell notifications",
+					alarm: false
+				}
+			]
 		},
 		actions: {
 			addTodo: (item, element) => {
 				let store = getStore();
 				store.list.push({
 					todo: item,
-					done: false
+					alarm: false
 				});
 				setStore({ store });
 			},
@@ -31,14 +40,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 				console.log(store.complete);
 				setStore({ store });
 			},
-			setDone: (index, element) => {
+			setalarm: (index, element) => {
 				let store = getStore();
-				store.list[index].done = true;
+				store.list[index].alarm = true;
 				setStore({ store });
 			},
-			unsetDone: (index, element) => {
+			unsetalarm: (index, element) => {
 				let store = getStore();
-				store.list[index].done = false;
+				store.list[index].alarm = false;
 				setStore({ store });
 			}
 		}
