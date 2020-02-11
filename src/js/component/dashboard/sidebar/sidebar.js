@@ -9,6 +9,7 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import Typography from "@material-ui/core/Typography";
 import Divider from "@material-ui/core/Divider";
 import IconButton from "@material-ui/core/IconButton";
+import { Link } from "react-router-dom";
 
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
@@ -182,7 +183,7 @@ export const SideBar = () => {
 				<Divider />
 				<List>
 					{menuItems.map((item, index) => (
-						<ListItem button key={item.label} href={item.url}>
+						<ListItem button key={item.label} component={Link} to={item.url}>
 							<ListItemIcon>{item.icon}</ListItemIcon>
 							<ListItemText primary={item.label} />
 						</ListItem>
@@ -210,9 +211,6 @@ export const SideBar = () => {
 					</Grid>
 					<Typography paragraph />
 				</div>
-				<Box mt={2}>
-					<Calendar />
-				</Box>
 			</main>
 		</div>
 	);
