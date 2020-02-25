@@ -202,10 +202,10 @@ export const SideBar = () => {
 			<main className={classes.content}>
 				<div className={classes.toolbar}>
 					<Grid container spacing={3}>
-						<Grid item xs={7}>
+						<Grid item md={12} lg={7}>
 							<Tasks />
 						</Grid>
-						<Grid item xs={5}>
+						<Grid item md={12} lg={5}>
 							<CompletedTasks />
 						</Grid>
 					</Grid>
