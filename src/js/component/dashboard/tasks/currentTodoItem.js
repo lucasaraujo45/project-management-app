@@ -15,10 +15,12 @@ export const CurrentTodoItem = () => {
 			{store.list.map((item, index) => {
 				return (
 					<li key={index}>
-						<div className="container">
-							<MenuIcon />
-							<Grid container spacing={3}>
-								<Grid md={6}>
+						<div className="container-fluid pb-2">
+							<Grid container spacing={2}>
+								<Grid xs={1}>
+									<MenuIcon />
+								</Grid>
+								<Grid xs={3}>
 									<span
 										className="ml-5 itemText"
 										onClick={
@@ -27,7 +29,16 @@ export const CurrentTodoItem = () => {
 										{item.todo}
 									</span>
 								</Grid>
-								<Grid md={3}>
+								<Grid xs={5}>
+									<span
+										className="ml-5 itemText"
+										onClick={
+											item.alarm ? () => actions.unsetalarm(index) : () => actions.setalarm(index)
+										}>
+										{item.todo}
+									</span>
+								</Grid>
+								<Grid xs={1}>
 									<IconButton className="checkmark float-right mr-4">
 										<AlarmIcon
 											className={item.alarm ? "todoItem alarm" : "todoItem"}
@@ -40,7 +51,7 @@ export const CurrentTodoItem = () => {
 										/>
 									</IconButton>
 								</Grid>
-								<Grid md={3}>
+								<Grid xs={2}>
 									<Button
 										className="float-right"
 										onClick={() => actions.completeTodo(index)}
