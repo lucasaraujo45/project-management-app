@@ -7,6 +7,7 @@ import Card from "@material-ui/core/Card";
 import Grid from "@material-ui/core/Grid";
 import { Context } from "../../../store/appContext";
 import Divider from "@material-ui/core/Divider";
+import { spacing } from "@material-ui/system";
 
 const useStyles = makeStyles({
 	card: {
@@ -14,6 +15,9 @@ const useStyles = makeStyles({
 		boxShadow: "0 6px 30px -12px rgba(0,0,0,0.3)",
 		"&:hover": {
 			boxShadow: "0 10px 60px -12.125px rgba(0,0,0,0.3)"
+		},
+		Divider: {
+			padding: 4
 		}
 	}
 });
@@ -41,8 +45,15 @@ export const Tasks = props => {
 							<CreateTodo />
 						</Grid>
 					</Grid>
-					<CurrentTodoItem />
+					<Grid>
+						<Divider />
+					</Grid>
 				</div>
+				<Grid>
+					<Grid item xs={12}>
+						<CurrentTodoItem />
+					</Grid>
+				</Grid>
 			</Card>
 		</div>
 	);

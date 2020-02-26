@@ -19,6 +19,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 			]
 		},
 		actions: {
+			// loadTasks: (item, element) => {
+			// 	fetch("https://project-management-tue.herokuapp.com/todo")
+			// 		.then(response => response.json())
+			// 		.then(data => setStore({ list: data.results }));
+			// },
 			addTodo: (item, element) => {
 				let store = getStore();
 				store.list.push({
