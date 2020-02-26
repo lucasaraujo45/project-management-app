@@ -38,11 +38,11 @@ export const Tasks = props => {
 						<Grid item xs={4}>
 							<h2>Tasks</h2>
 						</Grid>
-						<Grid item xs={4}>
-							<span className="float-right">{pluralize(store.list.length)}</span>
-						</Grid>
-						<Grid item xs={4}>
+						<Grid item xs={3}>
 							<CreateTodo />
+						</Grid>
+						<Grid item xs={5}>
+							<span className="float-right">{pluralize(store.list.length)}</span>
 						</Grid>
 					</Grid>
 					<Grid>
