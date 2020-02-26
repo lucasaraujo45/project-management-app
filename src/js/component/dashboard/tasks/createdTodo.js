@@ -2,8 +2,25 @@ import React, { useContext } from "react";
 import { Context } from "../../../store/appContext";
 import Modal from "@material-ui/core/Modal";
 import Button from "@material-ui/core/Button";
+import Select from "@material-ui/core/Select";
+import { makeStyles } from "@material-ui/core/styles";
+import InputLabel from "@material-ui/core/InputLabel";
+import MenuItem from "@material-ui/core/MenuItem";
+import FormHelperText from "@material-ui/core/FormHelperText";
+import FormControl from "@material-ui/core/FormControl";
+
+const useStyles = makeStyles(theme => ({
+	formControl: {
+		margin: theme.spacing(1),
+		minWidth: 120
+	},
+	selectEmpty: {
+		marginTop: theme.spacing(2)
+	}
+}));
 
 export const CreateTodo = () => {
+	const classes = useStyles();
 	const { store, actions } = useContext(Context);
 	const newTodo = React.createRef();
 
@@ -40,6 +57,14 @@ export const CreateTodo = () => {
 					<form onSubmit={createNewTodo} className="mb-5">
 						<input className="form-control" type="text" ref={newTodo} />
 					</form>
+					<FormControl className={classes.formControl}>
+						<InputLabel id="demo-simple-select-label">Age</InputLabel>
+						<Select labelId="demo-simple-select-label" id="demo-simple-select" value={store.list.user}>
+							<MenuItem value={10}>Lucas</MenuItem>
+							<MenuItem value={20}>Joe</MenuItem>
+							<MenuItem value={30}>Eddy</MenuItem>
+						</Select>
+					</FormControl>
 					<Button type="button" variant="contained" color="primary" className="mr-3" onClick={createNewTodo}>
 						Add Task
 					</Button>

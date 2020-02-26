@@ -35,7 +35,7 @@ export const Login = () => (
 			</div>
 			<div className="container">
 				<Link to="/dashboard">
-					<button type="submit">Login</button>
+					<button type="submit" onClick={() => actions.login(this.state.username, this.state.pw)}>Login</button>
 				</Link>
 				<label className="float-right">
 					<input type="checkbox" name="remember" /> Remember me
