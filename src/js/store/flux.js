@@ -28,7 +28,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 				},
 				{
 					user: "Eddy"
-				}
+                },
+                {
+                    token: null,
+                    user: null
+                }
 			]
 		},
 		actions: {
@@ -68,7 +72,30 @@ const getState = ({ getStore, getActions, setStore }) => {
 				let store = getStore();
 				store.completed.splice(index, 1);
 				setStore({ store });
-			}
+            },
+            logout: () => {
+				//setStore({ token: null });
+				console.log("logout");
+			},
+			login: (uname, psw) => {
+				fetch("https://project-management-tue.herokuapp.com/login", {
+					method: "POST",
+					headers: { "Content-Type": "application/json" },
+					body: JSON.stringify({
+						username: uname,
+						password: psw
+					})
+				})
+					.then(response => response.json())
+					.then(token => {
+						if (typeof token.msg != "undefined") {
+							// Notify.error(token.msg);
+						} else {
+							setStore({ token: token.jwt, currentUser: token.bubu });
+							// history.push("/dashboard");
+						}
+					});
+			},
 		}
 	};
 };
