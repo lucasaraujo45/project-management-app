@@ -1,6 +1,8 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
+			token: "",
+			users: [],
 			list: [
 				{
 					todo: "add message showing the day of the week",
@@ -50,6 +52,19 @@ const getState = ({ getStore, getActions, setStore }) => {
 				let store = getStore();
 				store.completed.splice(index, 1);
 				setStore({ store });
+			},
+			login: token => {
+				fetch("https://project-management-tue.herokuapp.com/login") // fetching data from API --- @EddyKudo
+					.then(function(response) {
+						if (!response.ok) {
+							throw Error(response.statusText);
+						}
+						return response.json();
+					})
+					.then(data => setStore({ token: data.results }))
+					.catch(function(error) {
+						console.log("Looks like there was a problem: \n", error);
+					});
 			}
 		}
 	};
