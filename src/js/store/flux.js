@@ -4,11 +4,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 			list: [
 				{
 					todo: "add message showing the day of the week",
-					alarm: false
+					alarm: false,
+					user: "Lucas"
 				},
 				{
 					todo: "Walk the dog",
-					alarm: false
+					alarm: false,
+					user: "Joe"
 				}
 			],
 			completed: [

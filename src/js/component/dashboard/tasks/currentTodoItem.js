@@ -26,7 +26,7 @@ export const CurrentTodoItem = () => {
 										onClick={
 											item.alarm ? () => actions.unsetalarm(index) : () => actions.setalarm(index)
 										}>
-										{item.todo}
+										{item.user}
 									</span>
 								</Grid>
 								<Grid xs={5}>
