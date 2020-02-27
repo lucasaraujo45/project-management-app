@@ -28,11 +28,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 				},
 				{
 					user: "Eddy"
-                },
-                {
-                    token: null,
-                    user: null
-                }
+				},
+				{
+					token: null,
+					user: null
+				}
 			]
 		},
 		actions: {
@@ -72,8 +72,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 				let store = getStore();
 				store.completed.splice(index, 1);
 				setStore({ store });
-            },
-            logout: () => {
+			},
+			logout: () => {
 				//setStore({ token: null });
 				console.log("logout");
 			},
@@ -95,7 +95,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 							// history.push("/dashboard");
 						}
 					});
-			},
+			}
 		}
 	};
 };

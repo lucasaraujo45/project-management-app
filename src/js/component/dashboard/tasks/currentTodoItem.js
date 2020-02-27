@@ -16,7 +16,7 @@ export const CurrentTodoItem = () => {
 				return (
 					<li key={index}>
 						<div className="container-fluid pb-2">
-							<Grid container spacing={2}>
+							<Grid container spacing={3}>
 								<Grid xs={1}>
 									<MenuIcon />
 								</Grid>
