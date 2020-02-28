@@ -9,6 +9,8 @@ import MenuItem from "@material-ui/core/MenuItem";
 import FormHelperText from "@material-ui/core/FormHelperText";
 import FormControl from "@material-ui/core/FormControl";
 
+//component that adds task to tasklist(modal)
+
 const useStyles = makeStyles(theme => ({
 	formControl: {
 		margin: theme.spacing(1),
