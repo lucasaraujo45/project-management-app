@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import clsx from "clsx";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
@@ -31,6 +31,7 @@ import { Tasks } from "../tasks/tasks";
 import { CompletedTasks } from "../tasks/completedTask";
 import { Calendar } from "../../calendar/calendar";
 import { Box } from "@material-ui/core";
+import { Context } from "../../../store/appContext";
 
 const drawerWidth = 240;
 
@@ -99,6 +100,8 @@ export const SideBar = () => {
 	const classes = useStyles();
 	const theme = useTheme();
 	const [open, setOpen] = React.useState(false);
+	const pluralize = count => (count > 1 ? `${count}` : `${count}`);
+	const { store, actions } = useContext(Context);
 
 	const handleDrawerOpen = () => {
 		setOpen(true);
@@ -155,7 +158,9 @@ export const SideBar = () => {
 					</Typography>
 					<Box ml={"auto"}>
 						<IconButton aria-label="show 3 new notifications" color="inherit">
-							<Badge badgeContent={3} color="secondary">
+							<Badge
+								badgeContent={<span className="float-right">{pluralize(store.list.length)}</span>}
+								color="secondary">
 								<NotificationsIcon />
 							</Badge>
 						</IconButton>

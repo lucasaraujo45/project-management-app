@@ -7,6 +7,8 @@ import AssignmentTurnedInIcon from "@material-ui/icons/AssignmentTurnedIn";
 import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 import { Button, IconButton } from "@material-ui/core";
 
+//Component of the completed tasks
+
 const useStyles = makeStyles({
 	card: {
 		minWidth: 275,

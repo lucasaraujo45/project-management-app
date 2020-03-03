@@ -8,6 +8,9 @@ import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormHelperText from "@material-ui/core/FormHelperText";
 import FormControl from "@material-ui/core/FormControl";
+import Grid from "@material-ui/core/Grid";
+
+//component that adds task to tasklist(modal)
 
 const useStyles = makeStyles(theme => ({
 	formControl: {
@@ -53,24 +56,46 @@ export const CreateTodo = () => {
 				onClose={toggleModal}
 				className="mt-5">
 				<div className="taskModal">
-					<h1>Add Task</h1>
-					<form onSubmit={createNewTodo} className="mb-5">
-						<input className="form-control" type="text" ref={newTodo} />
-					</form>
-					<FormControl className={classes.formControl}>
-						<InputLabel id="demo-simple-select-label">Age</InputLabel>
-						<Select labelId="demo-simple-select-label" id="demo-simple-select" value={store.list.user}>
-							<MenuItem value={10}>Lucas</MenuItem>
-							<MenuItem value={20}>Joe</MenuItem>
-							<MenuItem value={30}>Eddy</MenuItem>
-						</Select>
-					</FormControl>
-					<Button type="button" variant="contained" color="primary" className="mr-3" onClick={createNewTodo}>
-						Add Task
-					</Button>
-					<Button type="button" variant="contained" onClick={toggleModal}>
-						Close
-					</Button>
+					<Grid spacing={3}>
+						<Grid>
+							<h1>Add Task</h1>
+						</Grid>
+						<Grid>
+							<form onSubmit={createNewTodo} className="mb-5">
+								<input className="form-control" type="text" ref={newTodo} />
+							</form>
+						</Grid>
+						<Grid>
+							<FormControl className={classes.formControl}>
+								<InputLabel id="demo-simple-select-label">User</InputLabel>
+								<Select
+									labelId="demo-simple-select-label"
+									id="demo-simple-select"
+									value={store.list.user}>
+									<MenuItem value={10}>Lucas</MenuItem>
+									<MenuItem value={20}>Joe</MenuItem>
+									<MenuItem value={30}>Eddy</MenuItem>
+								</Select>
+							</FormControl>
+						</Grid>
+						<Grid container spacing={3}>
+							<Grid xs={6}>
+								<Button
+									type="button"
+									variant="contained"
+									color="primary"
+									className="mr-3"
+									onClick={createNewTodo}>
+									Add Task
+								</Button>
+							</Grid>
+							<Grid xs={6}>
+								<Button type="button" variant="contained" onClick={toggleModal}>
+									Close
+								</Button>
+							</Grid>
+						</Grid>
+					</Grid>
 				</div>
 			</Modal>
 		</div>
