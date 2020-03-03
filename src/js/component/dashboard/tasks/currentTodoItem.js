@@ -5,13 +5,22 @@ import AlarmIcon from "@material-ui/icons/Alarm";
 import Divider from "@material-ui/core/Divider";
 import MenuIcon from "@material-ui/icons/Menu";
 import Grid from "@material-ui/core/Grid";
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles({
+	ul: {
+		paddingLeft: "1rem",
+		paddingRight: "1rem"
+	}
+});
 
 export const CurrentTodoItem = () => {
+	const classes = useStyles();
 	const { store, actions } = useContext(Context);
 	const currentTodo = React.createRef();
 
 	return (
-		<ul className="list-unstyled">
+		<ul className={classes.ul + " list-unstyled"}>
 			{store.list.map((item, index) => {
 				return (
 					<li key={index}>
