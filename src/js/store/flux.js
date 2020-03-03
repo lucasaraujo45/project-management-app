@@ -30,11 +30,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 				},
 				{
 					user: "Eddy"
-                },
-                {
-                    token: null,
-                    user: null
-                }
+				},
+				{
+					token: null,
+					user: null
+				}
 			]
 		},
 		actions: {
@@ -74,18 +74,18 @@ const getState = ({ getStore, getActions, setStore }) => {
 				let store = getStore();
 				store.completed.splice(index, 1);
 				setStore({ store });
-            },
-            logout: () => {
+			},
+			logout: () => {
 				//setStore({ token: null });
 				console.log("logout");
 			},
-			login: (uname, psw) => {
+			login: (username, password) => {
 				fetch("https://project-management-tue.herokuapp.com/login", {
-					method: "POST",
+					method: "GET",
 					headers: { "Content-Type": "application/json" },
 					body: JSON.stringify({
-						username: uname,
-						password: psw
+						username: username,
+						password: password
 					})
 				})
 					.then(response => response.json())
@@ -98,6 +98,26 @@ const getState = ({ getStore, getActions, setStore }) => {
 						}
 					});
 			},
+			signup: data => {
+				const { firstName, lastName, password, email } = data;
+				fetch("https://3000-c51005f3-7a3b-4556-9fd6-71e7fb37057f.ws-us02.gitpod.io/user", {
+					method: "POST",
+					headers: { "Content-Type": "application/json" },
+					body: JSON.stringify({ firstName: firstName, lastName: lastName, password: password, email: email })
+				})
+					.then(function(response) {
+						if (!response.ok) {
+							throw Error(response.statusText);
+						}
+						return response.json();
+					})
+					.then(result => {
+						setStore(result);
+					})
+					.catch(function(error) {
+						console.log("Looks like there was a problem: \n", error);
+					});
+			}
 		}
 	};
 };

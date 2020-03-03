@@ -111,7 +111,7 @@ export const SideBar = () => {
 	const menuItems = [
 		{
 			label: "Project Tasks",
-			url: "",
+			url: "/dashboard/tasks",
 			icon: <FormatListNumberedIcon />
 		},
 		{
@@ -121,7 +121,7 @@ export const SideBar = () => {
 		},
 		{
 			label: "Calendar",
-			url: "/calendar",
+			url: "/dashboard/calendar",
 			icon: <DateRangeIcon />
 		},
 		{
@@ -199,7 +199,7 @@ export const SideBar = () => {
 					))}
 				</List>
 			</Drawer>
-			<main className={classes.content}>
+			{/* <main className={classes.content}>
 				<div className={classes.toolbar}>
 					<Grid container spacing={3}>
 						<Grid item md={12}>
@@ -208,10 +208,12 @@ export const SideBar = () => {
 						<Grid item md={12}>
 							<CompletedTasks />
 						</Grid>
+
+						<Calendar />
 					</Grid>
 					<Typography paragraph />
 				</div>
-			</main>
+			</main> */}
 		</div>
 	);
 };

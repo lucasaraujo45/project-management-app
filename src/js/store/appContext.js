@@ -22,6 +22,7 @@ const injectContext = PassedComponent => {
 		);
 
 		useEffect(() => {
+			// state.actions.signup();
 			// state.actions.loadTasks();
 			/**
 			 * EDIT THIS!

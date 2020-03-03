@@ -1,23 +1,25 @@
-import React from "react";
+import React, { useContext, useState } from "react";
+import { Link } from "react-router-dom";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
-import Link from "@material-ui/core/Link";
+// import Link from "@material-ui/core/Link";
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
+import { Context } from "../store/appContext";
 
 function Copyright() {
 	return (
 		<Typography variant="body2" color="textSecondary" align="center">
 			{"Copyright © "}
-			<Link color="inherit" href="https://github.com/EddyKudo">
+			<Link color="inherit" to="https://github.com/EddyKudo">
 				Website
 			</Link>{" "}
 			{new Date().getFullYear()}
@@ -48,6 +50,35 @@ const useStyles = makeStyles(theme => ({
 
 export const SignUp = () => {
 	const classes = useStyles();
+	const { store, actions } = useContext(Context);
+
+	const [formValues, setFormValues] = useState({
+		firstName: "",
+		lastName: "",
+		email: "",
+		password: "",
+		marketing: false
+	});
+
+	const handleSubmit = e => {
+		e.preventDefault();
+		actions.signup(formValues);
+	};
+
+	const handleChange = e => {
+		let key = e.target.name;
+		let value;
+		if (key !== "marketing") {
+			value = e.target.value;
+		} else {
+			value = e.target.checked;
+		}
+
+		setFormValues({
+			...formValues,
+			[key]: value
+		});
+	};
 
 	return (
 		<Container component="main" maxWidth="xs">
@@ -59,7 +90,7 @@ export const SignUp = () => {
 				<Typography component="h1" variant="h5">
 					Sign up
 				</Typography>
-				<form className={classes.form} noValidate>
+				<form className={classes.form} noValidate onSubmit={e => handleSubmit(e)}>
 					<Grid container spacing={2}>
 						<Grid item xs={12} sm={6}>
 							<TextField
@@ -70,6 +101,7 @@ export const SignUp = () => {
 								fullWidth
 								id="firstName"
 								label="First Name"
+								onChange={e => handleChange(e)}
 								autoFocus
 							/>
 						</Grid>
@@ -81,6 +113,7 @@ export const SignUp = () => {
 								id="lastName"
 								label="Last Name"
 								name="lastName"
+								onChange={e => handleChange(e)}
 								autoComplete="lname"
 							/>
 						</Grid>
@@ -92,6 +125,7 @@ export const SignUp = () => {
 								id="email"
 								label="Email Address"
 								name="email"
+								onChange={e => handleChange(e)}
 								autoComplete="email"
 							/>
 						</Grid>
@@ -104,22 +138,32 @@ export const SignUp = () => {
 								label="Password"
 								type="password"
 								id="password"
+								onChange={e => handleChange(e)}
 								autoComplete="current-password"
 							/>
 						</Grid>
 						<Grid item xs={12}>
 							<FormControlLabel
-								control={<Checkbox value="allowExtraEmails" color="primary" />}
+								control={
+									<Checkbox
+										value={formValues.marketing}
+										name="marketing"
+										onChange={e => handleChange(e)}
+										color="primary"
+									/>
+								}
 								label="I want to receive inspiration, marketing promotions and updates via email."
 							/>
 						</Grid>
 					</Grid>
+					{/* <Link to="/login"> */}
 					<Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit}>
 						Sign Up
 					</Button>
+					{/* </Link> */}
 					<Grid container justify="flex-end">
 						<Grid item>
-							<Link href="/login" variant="body2">
+							<Link to="/login" variant="body2">
 								Already have an account? Log in
 							</Link>
 						</Grid>

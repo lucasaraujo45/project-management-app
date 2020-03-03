@@ -33,9 +33,7 @@ const Layout = () => {
 						<Route path="/signup" component={SignUp} />
 						<Route path="/login" component={LoginMaterial} />
 						<Route path="/dashboard" component={Dashboard} />
-						<Switch>
-							<Route path="/calendar" component={Calendar} />
-						</Switch>
+						<Route path="/calendar" component={Calendar} />
 						<Route render={() => <h1>Not found!</h1>} />
 					</Switch>
 					<Footer />

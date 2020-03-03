@@ -93,9 +93,6 @@ export const Calendar = () => {
 	const prevMonth = () => {
 		setCurrentDate(subMonths(currentDate, 1));
 	};
-	const onDateClick = day => {
-		setSelectedDate(day);
-	};
 	return (
 		<div className="calendar">
 			<div>{header()}</div>

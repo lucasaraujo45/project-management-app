@@ -85,7 +85,7 @@ export const LoginMaterial = () => {
 					<FormControlLabel control={<Checkbox value="remember" color="primary" />} label="Remember me" />
 					<Button
 						href="/dashboard"
-						type="submit"
+						type="button"
 						fullWidth
 						variant="contained"
 						color="primary"
