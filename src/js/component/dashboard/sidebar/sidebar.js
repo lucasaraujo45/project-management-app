@@ -119,7 +119,7 @@ export const SideBar = () => {
 		},
 		{
 			label: "Team members",
-			url: "",
+			url: "/dashboard/tasks",
 			icon: <PeopleIcon />
 		},
 		{
@@ -129,7 +129,7 @@ export const SideBar = () => {
 		},
 		{
 			label: "Chat",
-			url: "",
+			url: "/dashboard/calendar",
 			icon: <ChatIcon />
 		}
 	];
@@ -218,7 +218,7 @@ export const SideBar = () => {
 					</Grid>
 					<Typography paragraph />
 				</div>
-			</main>*/}
+			</main> */}
 		</div>
 	);
 };

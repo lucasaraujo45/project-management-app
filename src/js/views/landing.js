@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import Logo from "../../img/maindashboard.jpeg";
 import "../../styles/landing.scss";
 import Grid from "@material-ui/core/Grid";
