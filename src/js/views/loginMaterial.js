@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -12,6 +12,7 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
+import { Context } from "../store/appContext";
 
 function Copyright() {
 	return (
@@ -48,6 +49,30 @@ const useStyles = makeStyles(theme => ({
 
 export const LoginMaterial = () => {
 	const classes = useStyles();
+	const { store, actions } = useContext(Context);
+
+	const [formValues, setFormValues] = useState({
+		email: "",
+		password: "",
+		remember: false
+	});
+	const handleSubmit = e => {
+		e.preventDefault();
+		actions.loginMat(formValues);
+	};
+	const handleChange = e => {
+		let key = e.target.name;
+		let value;
+		if (key !== "remember") {
+			value = e.target.value;
+		} else {
+			value = e.target.checked;
+		}
+		setFormValues({
+			...formValues,
+			[key]: value
+		});
+	};
 
 	return (
 		<Container component="main" maxWidth="xs">
@@ -59,7 +84,7 @@ export const LoginMaterial = () => {
 				<Typography component="h1" variant="h5">
 					Login to Account
 				</Typography>
-				<form className={classes.form} noValidate>
+				<form className={classes.form} noValidate onSubmit={e => handleSubmit(e)}>
 					<TextField
 						variant="outlined"
 						margin="normal"
@@ -70,6 +95,7 @@ export const LoginMaterial = () => {
 						name="email"
 						autoComplete="email"
 						autoFocus
+						onChange={e => handleChange(e)}
 					/>
 					<TextField
 						variant="outlined"
@@ -81,8 +107,19 @@ export const LoginMaterial = () => {
 						type="password"
 						id="password"
 						autoComplete="current-password"
+						onChange={e => handleChange(e)}
 					/>
-					<FormControlLabel control={<Checkbox value="remember" color="primary" />} label="Remember me" />
+					<FormControlLabel
+						control={
+							<Checkbox
+								value={formValues.remember}
+								name="remember"
+								color="primary"
+								onChange={e => handleChange(e)}
+							/>
+						}
+						label="Remember me"
+					/>
 					<Button
 						href="/dashboard"
 						type="button"

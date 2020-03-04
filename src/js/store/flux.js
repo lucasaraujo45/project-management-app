@@ -98,9 +98,29 @@ const getState = ({ getStore, getActions, setStore }) => {
 						}
 					});
 			},
+			loginMat: data => {
+				const { email, password } = data;
+				fetch("https://project-management-tue.herokuapp.com/login", {
+					method: "GET",
+					headers: { "Content-Type": "application/json" },
+					body: JSON.stringify({ email: email, password: password })
+				})
+					.then(function(response) {
+						if (!response.ok) {
+							throw Error(response.statusText);
+						}
+						return response.json();
+					})
+					.then(result => {
+						setStore(result);
+					})
+					.catch(function(error) {
+						console.log("Looks like there was a problem: \n", error);
+					});
+			},
 			signup: data => {
 				const { firstName, lastName, password, email } = data;
-				fetch("https://3000-c51005f3-7a3b-4556-9fd6-71e7fb37057f.ws-us02.gitpod.io/user", {
+				fetch("https://project-management-tue.herokuapp.com/user", {
 					method: "POST",
 					headers: { "Content-Type": "application/json" },
 					body: JSON.stringify({ firstName: firstName, lastName: lastName, password: password, email: email })
