@@ -69,8 +69,8 @@ export const Calendar = () => {
 						className={`column cell ${
 							!isSameMonth(day, monthStart) ? "disabled" : isSameDay(day, selectedDate) ? "selected" : ""
 						}`}
-						key={day}
-						onClick={() => onDateClick(parse(cloneDay))}>
+						key={day}>
+						{/* onClick={() => onDateClick(parse(cloneDay))} */}
 						<span className="number">{formattedDate}</span>
 						<span className="bg">{formattedDate}</span>
 					</div>

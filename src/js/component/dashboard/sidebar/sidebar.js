@@ -218,7 +218,7 @@ export const SideBar = () => {
 					</Grid>
 					<Typography paragraph />
 				</div>
-			</main> */}
+			</main>*/}
 		</div>
 	);
 };
