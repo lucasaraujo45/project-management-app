@@ -3,6 +3,7 @@
 
 #backend Located
 https://github.com/EddyKudo/Flask-Tasks_and_Users_Database
+backend Technology: Python + Flask + SQLAlchemy
 
 ### Requirements:
 - Make sure you are using node version 8
