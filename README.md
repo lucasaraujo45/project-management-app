@@ -11,7 +11,7 @@ backend Technology: Python + Flask + SQLAlchemy
 ##### Install the packages:
 ```
 $ npm install
-`````
+````````
 
 ## Start coding!
 Start the webpack server with live reload:
