@@ -100,7 +100,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			loginMat: data => {
 				const { email, password } = data;
-				fetch("https://project-management-tue.herokuapp.com/login", {
+				fetch("https://8080-c6b9f0b4-17a5-4e54-a0d3-e913566cb79b.ws-us02.gitpod.io/login", {
 					method: "GET",
 					headers: { "Content-Type": "application/json" },
 					body: JSON.stringify({ email: email, password: password })

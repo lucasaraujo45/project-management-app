@@ -57,6 +57,7 @@ export const SignUp = () => {
 		lastName: "",
 		email: "",
 		password: "",
+		phone: "",
 		marketing: false
 	});
 
@@ -140,6 +141,18 @@ export const SignUp = () => {
 								id="password"
 								onChange={e => handleChange(e)}
 								autoComplete="current-password"
+							/>
+						</Grid>
+						<Grid item xs={12}>
+							<TextField
+								variant="outlined"
+								required
+								fullWidth
+								id="phone"
+								label="Phone"
+								name="phone"
+								onChange={e => handleChange(e)}
+								autoComplete="phone"
 							/>
 						</Grid>
 						<Grid item xs={12}>
