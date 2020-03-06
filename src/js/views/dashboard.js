@@ -22,10 +22,8 @@ export const Dashboard = ({ match }) => {
 			<SideBar />
 			<main className={classes.content}>
 				<Route exact path={`${match.path}/tasks`} component={TasksGrid} />
-
 				<Route exact path={`${match.path}/calendar`} component={Calendar} />
-
-				<Route exact path={`${match.path}/`} component={Tasks} />
+				<Route exact path={`${match.path}/`} component={TasksGrid} />
 			</main>
 		</div>
 	);
