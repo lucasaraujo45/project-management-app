@@ -129,7 +129,7 @@ export const SideBar = () => {
 		},
 		{
 			label: "Chat",
-			url: "/dashboard/calendar",
+			url: "/dashboard/chat",
 			icon: <ChatIcon />
 		}
 	];
