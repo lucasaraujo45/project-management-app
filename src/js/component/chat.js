@@ -140,7 +140,7 @@ export const Chat = () => {
 			<ul id="online">
 				{" "}
 				<a onClick={() => logOut()} href="#">
-					<div style={{ float: "right" }}>❌</div>
+					<div style={{ float: "right" }}>Quit chat ❌</div>
 				</a>{" "}
 				{online ? "❤️ You are Online" : "💛 You are Offline"} <hr />
 				<Online data={onlineList} />{" "}

@@ -121,7 +121,7 @@ export const LoginMaterial = () => {
 						label="Remember me"
 					/>
 					<Button
-						// href="/dashboard"
+						href="/dashboard"
 						type="button"
 						fullWidth
 						variant="contained"
