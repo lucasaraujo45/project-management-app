@@ -18,7 +18,7 @@ export const Navbar = () => {
 						<Dropdown.Item href="/login">Log In</Dropdown.Item>
 						<Dropdown.Item href="/signup">Sign Up</Dropdown.Item>
 						<Dropdown.Divider />
-						<Dropdown.Item href="/">Home</Dropdown.Item>
+						<Dropdown.Item href="/">Home Page</Dropdown.Item>
 					</Dropdown.Menu>
 				</Dropdown>
 			</div>

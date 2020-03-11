@@ -13,6 +13,13 @@ const useStyles = makeStyles(theme => ({
 	content: {
 		flexGrow: 1,
 		padding: theme.spacing(3)
+	},
+	toolbar: {
+		display: "flex",
+		alignItems: "center",
+		justifyContent: "flex-end",
+		padding: theme.spacing(0, 1),
+		...theme.mixins.toolbar
 	}
 }));
 
@@ -22,10 +29,12 @@ export const Dashboard = ({ match }) => {
 		<div className="mt-2">
 			<SideBar />
 			<main className={classes.content}>
-				<Route exact path={`${match.path}/tasks`} component={TasksGrid} />
-				<Route exact path={`${match.path}/calendar`} component={Calendar} />
-				<Route exact path={`${match.path}/chat`} component={Chat} />
-				<Route exact path={`${match.path}/`} component={TasksGrid} />
+				<div className={classes.toolbar}>
+					<Route exact path={`${match.path}/tasks`} component={TasksGrid} />
+					<Route exact path={`${match.path}/calendar`} component={Calendar} />
+					<Route exact path={`${match.path}/chat`} component={Chat} />
+					<Route exact path={`${match.path}/`} component={TasksGrid} />
+				</div>
 			</main>
 		</div>
 	);

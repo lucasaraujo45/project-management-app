@@ -137,7 +137,7 @@ export const LoginMaterial = () => {
 						</Grid>
 						<Grid item>
 							<Link href="/signup" variant="body2">
-								{"Don't have an account? Sign Up"}
+								{"Don't have an account? Sign Up now!"}
 							</Link>
 						</Grid>
 					</Grid>
