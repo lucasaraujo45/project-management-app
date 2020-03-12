@@ -8,7 +8,7 @@ export const Users = props => {
 		<div>
 			{store.users.length > 0 ? (
 				<div className="jumbotron row mx-auto w-100">
-					<div data={store.users[0]} />
+					<div data={store.users} />
 				</div>
 			) : (
 				<p>No Users</p>

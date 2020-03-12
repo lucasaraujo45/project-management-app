@@ -92,25 +92,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 				//setStore({ token: null });
 				console.log("logout");
 			},
-			login: (username, password) => {
-				fetch("https://project-management-tue.herokuapp.com/login", {
-					method: "GET",
-					headers: { "Content-Type": "application/json" },
-					body: JSON.stringify({
-						username: username,
-						password: password
-					})
-				})
-					.then(response => response.json())
-					.then(token => {
-						if (typeof token.msg != "undefined") {
-							// Notify.error(token.msg);
-						} else {
-							setStore({ token: token.jwt, currentUser: token.bubu });
-							// history.push("/dashboard");
-						}
-					});
-			},
 			loginMat: data => {
 				const { email, password } = data;
 				fetch("https://8080-c6b9f0b4-17a5-4e54-a0d3-e913566cb79b.ws-us02.gitpod.io/login", {
