@@ -119,7 +119,7 @@ export const SideBar = () => {
 		},
 		{
 			label: "Team members",
-			url: "/dashboard/tasks",
+			url: "/dashboard/users",
 			icon: <PeopleIcon />
 		},
 		{

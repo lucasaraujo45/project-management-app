@@ -4,6 +4,7 @@ import { SideBar } from "../component/dashboard/sidebar/sidebar";
 import { Route, Switch } from "react-router-dom";
 import { Calendar } from "../component/calendar/calendar";
 import { Chat } from "../component/chat";
+import { Users } from "../component/existingUsers";
 import { Tasks } from "../component/dashboard/tasks/tasks";
 import Grid from "@material-ui/core/Grid";
 import PropTypes from "prop-types";
@@ -33,6 +34,7 @@ export const Dashboard = ({ match }) => {
 					<Route exact path={`${match.path}/tasks`} component={TasksGrid} />
 					<Route exact path={`${match.path}/calendar`} component={Calendar} />
 					<Route exact path={`${match.path}/chat`} component={Chat} />
+					<Route exact path={`${match.path}/users`} component={Users} />
 					<Route exact path={`${match.path}/`} component={TasksGrid} />
 				</div>
 			</main>

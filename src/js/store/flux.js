@@ -20,22 +20,22 @@ const getState = ({ getStore, getActions, setStore }) => {
 					todo: "Create bell notificationsooo",
 					alarm: false
 				}
-			],
-			users: [
-				{
-					user: "Lucas"
-				},
-				{
-					user: "Joe"
-				},
-				{
-					user: "Eddy"
-				},
-				{
-					token: null,
-					user: null
-				}
 			]
+			// users: [
+			// 	{
+			// 		user: "Lucas"
+			// 	},
+			// 	{
+			// 		user: "Joe"
+			// 	},
+			// 	{
+			// 		user: "Eddy"
+			// 	},
+			// 	{
+			// 		token: null,
+			// 		user: null
+			// 	}
+			// ]
 		},
 		actions: {
 			// loadTasks: (item, element) => {
