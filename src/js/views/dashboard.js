@@ -10,6 +10,9 @@ import PropTypes from "prop-types";
 import { TasksGrid } from "../component/dashboard/tasks/tasksGrid";
 
 const useStyles = makeStyles(theme => ({
+	root: {
+		display: "flex"
+	},
 	content: {
 		flexGrow: 1,
 		padding: theme.spacing(3)
@@ -26,7 +29,7 @@ const useStyles = makeStyles(theme => ({
 export const Dashboard = ({ match }) => {
 	const classes = useStyles();
 	return (
-		<div className="mt-2">
+		<div className={classes.root}>
 			<SideBar />
 			<main className={classes.content}>
 				<div className={classes.toolbar}>
