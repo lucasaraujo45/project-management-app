@@ -25,7 +25,7 @@ export const ProfileMenu = () => {
 			</Button>
 			<Menu id="simple-menu" anchorEl={anchorEl} keepMounted open={Boolean(anchorEl)} onClose={handleClose}>
 				<MenuItem onClick={handleClose}>Profile</MenuItem>
-				<MenuItem onClick={handleClose}>My account</MenuItem>
+				<MenuItem onClick={handleClose}>My Team</MenuItem>
 				<Divider />
 				<MenuItem onClick={handleClose}>
 					<Link href="/">Logout</Link>
