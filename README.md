@@ -1,3 +1,8 @@
+Final project for 4Geeks Acedemy. Built with Reactjs, Flux, Python, SQLAlchemy, Flask
+
+This project is a project management progressive web app. Similiar to monday.com. 
+-Allows you to create tasks, assign the task to different team members, set twilio text reminders when a task is close to due date, & more.
+
 #Project Management App
 [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io#https://github.com/4GeeksAcademy/react-hello-webapp.git)
 
