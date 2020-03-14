@@ -97,7 +97,7 @@ export const CreateTodo = () => {
 									</Select>
 								</FormControl>
 							</Grid>
-							<Grid xs={6} mt={2}>
+							<Grid xs={6}>
 								<DayPickerInput
 									formatDate={formatDate}
 									format={FORMAT}

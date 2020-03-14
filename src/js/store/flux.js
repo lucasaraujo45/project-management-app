@@ -2,7 +2,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
 			token: "",
-			users: [],
+			users: [
+				// {
+				// 	name: "Eddy",
+				// 	height: "172",
+				// 	mass: "77"
+				// }
+			],
 			list: [
 				{
 					todo: "add message showing the day of the week",
@@ -21,21 +27,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 					alarm: false
 				}
 			]
-			// users: [
-			// 	{
-			// 		user: "Lucas"
-			// 	},
-			// 	{
-			// 		user: "Joe"
-			// 	},
-			// 	{
-			// 		user: "Eddy"
-			// 	},
-			// 	{
-			// 		token: null,
-			// 		user: null
-			// 	}
-			// ]
 		},
 		actions: {
 			// loadTasks: (item, element) => {
@@ -44,14 +35,17 @@ const getState = ({ getStore, getActions, setStore }) => {
 			// 		.then(data => setStore({ list: data.results }));
 			// },
 			loadUsers: () => {
-				fetch("https://3000-c51005f3-7a3b-4556-9fd6-71e7fb37057f.ws-us02.gitpod.io/user") // fetching users from API --- @EddyKudo
+				fetch("https://3000-a7dcade3-e613-4cfb-b98e-da01f98461a5.ws-us02.gitpod.io/user") // fetching users from API --- @EddyKudo
 					.then(function(response) {
 						if (!response.ok) {
 							throw Error(response.statusText);
 						}
 						return response.json();
 					})
-					.then(data => setStore({ users: data.results }))
+					.then(data => {
+						console.log(data);
+						setStore({ users: data.users });
+					})
 					.catch(function(error) {
 						console.log("Looks like there was a problem: \n", error);
 					});

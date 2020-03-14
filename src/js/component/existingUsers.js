@@ -1,17 +1,27 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Context } from "../store/appContext";
 import PropTypes from "prop-types";
+import { makeStyles, useTheme } from "@material-ui/core/styles";
+
+const useStyles = makeStyles(theme => ({
+	parag: {
+		color: "black"
+	}
+}));
 
 export const Users = props => {
+	const classes = useStyles();
 	const { store, actions } = useContext(Context);
 	return (
 		<div>
 			{store.users.length > 0 ? (
-				<div className="jumbotron row mx-auto w-100">
-					<div data={store.users} />
-				</div>
+				<ul className="mx-auto list-unstyled">
+					{store.users.map((user, index) => (
+						<li key={index}>{user.name}</li>
+					))}
+				</ul>
 			) : (
-				<p>No Users</p>
+				<p className={classes.parag}>No Users</p>
 			)}
 		</div>
 	);
