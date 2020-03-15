@@ -83,7 +83,7 @@ export const CreateTodo = () => {
 								<input className="form-control" type="text" ref={newTodo} />
 							</form>
 						</Grid>
-						<Grid container spacing={3}>
+						<Grid container spacing={3} className="ml-3">
 							<Grid xs={6}>
 								<FormControl className={classes.formControl}>
 									<InputLabel id="demo-simple-select-label">User</InputLabel>
@@ -97,7 +97,7 @@ export const CreateTodo = () => {
 									</Select>
 								</FormControl>
 							</Grid>
-							<Grid xs={6}>
+							<Grid xs={6} className="mt-4">
 								<DayPickerInput
 									formatDate={formatDate}
 									format={FORMAT}
@@ -106,7 +106,7 @@ export const CreateTodo = () => {
 								/>
 							</Grid>
 						</Grid>
-						<Grid container spacing={3}>
+						<Grid container spacing={3} className="mt-5 ml-5">
 							<Grid xs={6} mt={3}>
 								<Button
 									type="button"
