@@ -17,7 +17,10 @@ export const Users = props => {
 			{store.users.length > 0 ? (
 				<ul className="mx-auto list-unstyled">
 					{store.users.map((user, index) => (
-						<li key={index}>{user.name}</li>
+						<li key={index}>
+							{user.name}
+							{user.last}
+						</li>
 					))}
 				</ul>
 			) : (
