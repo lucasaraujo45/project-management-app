@@ -6,6 +6,8 @@ import Divider from "@material-ui/core/Divider";
 import MenuIcon from "@material-ui/icons/Menu";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
+import { startOfToday } from "date-fns";
+import { format } from "date-fns";
 
 const useStyles = makeStyles({
 	ul: {
@@ -18,6 +20,9 @@ export const CurrentTodoItem = () => {
 	const classes = useStyles();
 	const { store, actions } = useContext(Context);
 	const currentTodo = React.createRef();
+	let todayDate = startOfToday();
+	format(todayDate, "MMMM do yyyy");
+	console.log(todayDate);
 
 	return (
 		<ul className={classes.ul + " list-unstyled"}>
@@ -60,7 +65,8 @@ export const CurrentTodoItem = () => {
 										/>
 									</IconButton>
 								</Grid>
-								<Grid xs={2}>
+								<Grid xs={1}>{format(todayDate, "MMM do yyyy")}</Grid>
+								<Grid xs={1}>
 									<Button
 										className="float-right"
 										onClick={() => actions.completeTodo(index)}
