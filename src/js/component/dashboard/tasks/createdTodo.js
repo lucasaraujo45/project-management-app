@@ -64,7 +64,7 @@ export const CreateTodo = () => {
 		<div>
 			<div className="taskButton">
 				{" "}
-				<AddCircleIcon type="button" variant="contained" color="primary" onClick={toggleModal}>
+				<AddCircleIcon type="button" variant="contained" fontSize="large" color="primary" onClick={toggleModal}>
 					Add Task
 				</AddCircleIcon>
 			</div>
