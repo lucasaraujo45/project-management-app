@@ -15,6 +15,7 @@ import { DateUtils } from "react-day-picker";
 import dateFnsFormat from "date-fns/format";
 import dateFnsParse from "date-fns/parse";
 import "react-day-picker/lib/style.css";
+import AddCircleIcon from "@material-ui/icons/AddCircle";
 //component that adds task to tasklist(modal)
 function parseDate(str, format, locale) {
 	const parsed = dateFnsParse(str, format, new Date(), { locale });
@@ -63,9 +64,9 @@ export const CreateTodo = () => {
 		<div>
 			<div className="taskButton">
 				{" "}
-				<Button type="button" variant="contained" color="primary" onClick={toggleModal}>
+				<AddCircleIcon type="button" variant="contained" color="primary" onClick={toggleModal}>
 					Add Task
-				</Button>
+				</AddCircleIcon>
 			</div>
 			<Modal
 				aria-labelledby="simple-modal-title"

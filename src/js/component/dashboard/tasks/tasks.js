@@ -35,14 +35,14 @@ export const Tasks = props => {
 			<Card borderRadius={16} className={classes.card} variant="outlined">
 				<div className="m-4">
 					<Grid container spacing={3}>
-						<Grid item xs={4}>
+						<Grid item xs={6}>
 							<h2>Tasks</h2>
-						</Grid>
-						<Grid item xs={3}>
-							<CreateTodo />
 						</Grid>
 						<Grid item xs={5}>
 							<span className="float-right">{pluralize(store.list.length)}</span>
+						</Grid>
+						<Grid item xs={1}>
+							<CreateTodo />
 						</Grid>
 					</Grid>
 					<Grid>
