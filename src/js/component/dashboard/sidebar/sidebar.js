@@ -89,6 +89,9 @@ const useStyles = makeStyles(theme => ({
 	},
 	paper: {
 		padding: theme.spacing(1)
+	},
+	parag: {
+		color: "black"
 	}
 	// toolbar: {
 	// 	display: "flex",
@@ -204,7 +207,7 @@ export const SideBar = () => {
 									}}
 									onClose={handlePopoverClose}
 									disableRestoreFocus>
-									<Typography>Popover</Typography>
+									<Typography className={classes.parag}>Shows quantity of Tasks left</Typography>
 								</Popover>
 							</Badge>
 						</IconButton>
