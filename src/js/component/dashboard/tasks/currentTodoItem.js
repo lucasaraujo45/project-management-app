@@ -30,22 +30,22 @@ export const CurrentTodoItem = () => {
 				return (
 					<li key={index}>
 						<div className="container-fluid pb-2">
-							<Grid container spacing={3}>
+							<Grid container spacing={2}>
 								<Grid xs={1}>
 									<MenuIcon />
 								</Grid>
-								<Grid xs={3}>
+								<Grid xs={1}>
 									<span
-										className="ml-5 itemText"
+										className="itemText"
 										onClick={
 											item.alarm ? () => actions.unsetalarm(index) : () => actions.setalarm(index)
 										}>
 										{item.user}
 									</span>
 								</Grid>
-								<Grid xs={5}>
+								<Grid xs={4}>
 									<span
-										className="ml-5 itemText"
+										className="itemText"
 										onClick={
 											item.alarm ? () => actions.unsetalarm(index) : () => actions.setalarm(index)
 										}>
@@ -53,7 +53,7 @@ export const CurrentTodoItem = () => {
 									</span>
 								</Grid>
 								<Grid xs={1}>
-									<IconButton className="checkmark float-right mr-4">
+									<IconButton className="checkmark">
 										<AlarmIcon
 											className={item.alarm ? "todoItem alarm" : "todoItem"}
 											onClick={
@@ -65,10 +65,11 @@ export const CurrentTodoItem = () => {
 										/>
 									</IconButton>
 								</Grid>
-								<Grid xs={1}>{format(todayDate, "MMM do yyyy")}</Grid>
+								<Grid xs={2}>{format(todayDate, "MMM do yyyy")}</Grid>
+								<Grid xs={2}>{format(todayDate, "MMM do yyyy")}</Grid>
 								<Grid xs={1}>
 									<Button
-										className="float-right"
+										className="ml-1 mr-1"
 										onClick={() => actions.completeTodo(index)}
 										data-toggle="tooltip"
 										data-placement="bottom"

@@ -33,17 +33,36 @@ export const Tasks = props => {
 	return (
 		<div>
 			<Card borderRadius={16} className={classes.card} variant="outlined">
-				<div className="m-4">
-					<Grid container spacing={3}>
-						<Grid item xs={6}>
-							<h2>Tasks</h2>
+				<div className="mb-3">
+					<div className=" pl-5 pr-5 pt-3 bg-light">
+						<Grid container spacing={3}>
+							<Grid item xs={6}>
+								<h2>Tasks</h2>
+							</Grid>
+							<Grid item xs={5}>
+								<span className="float-right">{pluralize(store.list.length)}</span>
+							</Grid>
+							<Grid item xs={1}>
+								<CreateTodo />
+							</Grid>
 						</Grid>
-						<Grid item xs={5}>
-							<span className="float-right">{pluralize(store.list.length)}</span>
-						</Grid>
+					</div>
+					<Grid container spacing={3} className="mt-2">
+						<Grid item xs={1} />
 						<Grid item xs={1}>
-							<CreateTodo />
+							<h3>User</h3>
 						</Grid>
+						<Grid item xs={4}>
+							<h3>Task</h3>
+						</Grid>
+						<Grid item xs={1} />
+						<Grid item xs={2}>
+							<h3>Added</h3>
+						</Grid>
+						<Grid item xs={2}>
+							<h3>Due</h3>
+						</Grid>
+						<Grid item xs={1} />
 					</Grid>
 					<Grid>
 						<Divider />
