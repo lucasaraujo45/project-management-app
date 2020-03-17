@@ -83,6 +83,12 @@ const useStyles = makeStyles(theme => ({
 		[theme.breakpoints.up("sm")]: {
 			width: theme.spacing(9) + 1
 		}
+	},
+	popover: {
+		pointerEvents: "none"
+	},
+	paper: {
+		padding: theme.spacing(1)
 	}
 	// toolbar: {
 	// 	display: "flex",
@@ -103,6 +109,18 @@ export const SideBar = () => {
 	const [open, setOpen] = React.useState(false);
 	const pluralize = count => (count > 1 ? `${count}` : `${count}`);
 	const { store, actions } = useContext(Context);
+
+	const [anchorEl, setAnchorEl] = React.useState(null);
+
+	const handlePopoverOpen = event => {
+		setAnchorEl(event.currentTarget);
+	};
+
+	const handlePopoverClose = () => {
+		setAnchorEl(null);
+	};
+
+	const openPop = Boolean(anchorEl);
 
 	const handleDrawerOpen = () => {
 		setOpen(true);
@@ -162,7 +180,32 @@ export const SideBar = () => {
 							<Badge
 								badgeContent={<span className="float-right">{pluralize(store.list.length)}</span>}
 								color="secondary">
-								<NotificationsIcon />
+								<NotificationsIcon
+									aria-owns={openPop ? "mouse-over-popover" : undefined}
+									aria-haspopup="true"
+									onMouseEnter={handlePopoverOpen}
+									onMouseLeave={handlePopoverClose}
+								/>
+								<Popover
+									id="mouse-over-popover"
+									className={classes.popover}
+									classes={{
+										paper: classes.paper
+									}}
+									open={openPop}
+									anchorEl={anchorEl}
+									anchorOrigin={{
+										vertical: "center",
+										horizontal: "left"
+									}}
+									transformOrigin={{
+										vertical: "top",
+										horizontal: "right"
+									}}
+									onClose={handlePopoverClose}
+									disableRestoreFocus>
+									<Typography>Popover</Typography>
+								</Popover>
 							</Badge>
 						</IconButton>
 					</Box>
