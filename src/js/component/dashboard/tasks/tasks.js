@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { CreateTodo } from "./createdTodo";
+import { CreateTodo } from "./createTaskModal";
 import { CurrentTodoItem } from "./currentTodoItem";
 import "./tasks.scss";
 import { makeStyles } from "@material-ui/core/styles";
