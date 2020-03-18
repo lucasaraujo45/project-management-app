@@ -207,7 +207,7 @@ export const SideBar = () => {
 									}}
 									onClose={handlePopoverClose}
 									disableRestoreFocus>
-									<Typography className={classes.parag}>Shows quantity of Tasks left</Typography>
+									<Typography className={classes.parag}>Shows number of Tasks left</Typography>
 								</Popover>
 							</Badge>
 						</IconButton>
