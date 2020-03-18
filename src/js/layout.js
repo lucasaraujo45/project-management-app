@@ -14,6 +14,7 @@ import { Dashboard } from "./views/dashboard";
 import injectContext from "./store/appContext";
 
 import { Navbar } from "./component/navbar";
+import { RedirectNewuser } from "./component/newUserRedirect";
 import { Footer } from "./component/footer";
 import { Calendar } from "./component/calendar/calendar";
 
@@ -32,6 +33,7 @@ const Layout = () => {
 						<Route exact path="/" component={Landing} />
 						<Route path="/signup" component={SignUp} />
 						<Route path="/login" component={LoginMaterial} />
+						<Route path="/usercreated" component={RedirectNewuser} />
 						<Route path="/dashboard" component={Dashboard} />
 						<Route path="/calendar" component={Calendar} />
 						<Route render={() => <h1>Not found!</h1>} />
