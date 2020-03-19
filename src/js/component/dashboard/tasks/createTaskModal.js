@@ -9,6 +9,8 @@ import MenuItem from "@material-ui/core/MenuItem";
 import FormHelperText from "@material-ui/core/FormHelperText";
 import FormControl from "@material-ui/core/FormControl";
 import Grid from "@material-ui/core/Grid";
+import Popover from "@material-ui/core/Popover";
+import Typography from "@material-ui/core/Typography";
 //imports for date
 import DayPickerInput from "react-day-picker/DayPickerInput";
 import { DateUtils } from "react-day-picker";
@@ -36,6 +38,15 @@ const useStyles = makeStyles(theme => ({
 	},
 	selectEmpty: {
 		marginTop: theme.spacing(2)
+	},
+	popover: {
+		pointerEvents: "none"
+	},
+	paper: {
+		padding: theme.spacing(1)
+	},
+	parag: {
+		color: "black"
 	}
 }));
 
@@ -43,6 +54,18 @@ export const CreateTodo = () => {
 	const classes = useStyles();
 	const { store, actions } = useContext(Context);
 	const newTodo = React.createRef();
+
+	const [anchorEl, setAnchorEl] = React.useState(null);
+
+	const handlePopoverOpen = event => {
+		setAnchorEl(event.currentTarget);
+	};
+
+	const handlePopoverClose = () => {
+		setAnchorEl(null);
+	};
+
+	const openPop = Boolean(anchorEl);
 
 	const FORMAT = "MM/dd/yyyy";
 
@@ -64,9 +87,38 @@ export const CreateTodo = () => {
 		<div>
 			<div className="taskButton">
 				{" "}
-				<AddCircleIcon type="button" variant="contained" fontSize="large" color="primary" onClick={toggleModal}>
+				<AddCircleIcon
+					type="button"
+					variant="contained"
+					fontSize="large"
+					color="primary"
+					onClick={toggleModal}
+					aria-owns={openPop ? "mouse-over-popover" : undefined}
+					aria-haspopup="true"
+					onMouseEnter={handlePopoverOpen}
+					onMouseLeave={handlePopoverClose}>
 					Add Task
 				</AddCircleIcon>
+				<Popover
+					id="mouse-over-popover"
+					className={classes.popover}
+					classes={{
+						paper: classes.paper
+					}}
+					open={openPop}
+					anchorEl={anchorEl}
+					anchorOrigin={{
+						vertical: "center",
+						horizontal: "left"
+					}}
+					transformOrigin={{
+						vertical: "top",
+						horizontal: "right"
+					}}
+					onClose={handlePopoverClose}
+					disableRestoreFocus>
+					<Typography className={classes.parag}>Click to Add Task</Typography>
+				</Popover>
 			</div>
 			<Modal
 				aria-labelledby="simple-modal-title"
