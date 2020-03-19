@@ -15,15 +15,14 @@ const useStyles = makeStyles(theme => ({
 		color: "black"
 	}
 }));
-export const RedirectNewuser = () => {
+export const RedirectLogin = () => {
 	const classes = useStyles();
 	return (
 		<Container component="main" maxWidth="xs">
 			<CssBaseline />
 			<div className={classes.paper}>
-				<p className={classes.parag}>Thank you, New User has been created!</p>
-				<p className={classes.parag}>You will be redirected to Login Page now...</p>
-				<Link href="/login">Click to go to Login</Link>
+				<p className={classes.parag}>Thank you, Everything is correct!</p>
+				<p className={classes.parag}>You will be redirected to Your Dashboard now...</p>
 				<Link href="/dashboard">Click to go to Dashboard</Link>
 			</div>
 		</Container>

@@ -53,12 +53,13 @@ export const SignUp = () => {
 	const { store, actions } = useContext(Context);
 
 	const [formValues, setFormValues] = useState({
-		firstName: "",
-		lastName: "",
+		name: "",
+		last: "",
 		email: "",
 		password: "",
 		phone: "",
-		marketing: false
+		marketing: false,
+		todos: []
 	});
 
 	const handleSubmit = e => {
@@ -96,11 +97,11 @@ export const SignUp = () => {
 						<Grid item xs={12} sm={6}>
 							<TextField
 								autoComplete="fname"
-								name="firstName"
+								name="name"
 								variant="outlined"
 								required
 								fullWidth
-								id="firstName"
+								id="firsName"
 								label="First Name"
 								onChange={e => handleChange(e)}
 								autoFocus
@@ -113,7 +114,7 @@ export const SignUp = () => {
 								fullWidth
 								id="lastName"
 								label="Last Name"
-								name="lastName"
+								name="last"
 								onChange={e => handleChange(e)}
 								autoComplete="lname"
 							/>
@@ -169,11 +170,11 @@ export const SignUp = () => {
 							/>
 						</Grid>
 					</Grid>
-					<Link to="/usercreated">
-						<Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit}>
-							Sign Up
-						</Button>
-					</Link>
+					{/* <Link to="/usercreated"> */}
+					<Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit}>
+						Sign Up
+					</Button>
+					{/* </Link> */}
 					<Grid container justify="flex-end">
 						<Grid item>
 							<Link to="/login" variant="body2">

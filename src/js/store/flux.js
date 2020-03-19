@@ -2,13 +2,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
 			token: "",
-			users: [
-				// {
-				// 	name: "Eddy",
-				// 	height: "172",
-				// 	mass: "77"
-				// }
-			],
+			users: [],
 			list: [
 				{
 					todo: "add message showing the day of the week",
@@ -107,11 +101,18 @@ const getState = ({ getStore, getActions, setStore }) => {
 					});
 			},
 			signup: data => {
-				const { firstName, lastName, password, email } = data;
-				fetch("https://project-management-tue.herokuapp.com/user", {
+				const { name, last, password, email, phone, todos } = data;
+				fetch("https://3000-a9f052a9-45d1-4b6e-8d2e-840faecf6a3f.ws-us02.gitpod.io/user", {
 					method: "POST",
 					headers: { "Content-Type": "application/json" },
-					body: JSON.stringify({ firstName: firstName, lastName: lastName, password: password, email: email })
+					body: JSON.stringify({
+						name: name,
+						last: last,
+						password: password,
+						email: email,
+						phone: phone,
+						todos: todos
+					})
 				})
 					.then(function(response) {
 						if (!response.ok) {
