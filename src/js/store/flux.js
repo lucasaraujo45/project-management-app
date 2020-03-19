@@ -35,7 +35,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			// 		.then(data => setStore({ list: data.results }));
 			// },
 			loadUsers: () => {
-				fetch("https://3000-a7dcade3-e613-4cfb-b98e-da01f98461a5.ws-us02.gitpod.io/user") // fetching users from API --- @EddyKudo
+				fetch("https://3000-a9f052a9-45d1-4b6e-8d2e-840faecf6a3f.ws-us02.gitpod.io/user") // fetching users from API --- @EddyKudo
 					.then(function(response) {
 						if (!response.ok) {
 							throw Error(response.statusText);
@@ -44,7 +44,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 					.then(data => {
 						console.log(data);
-						setStore({ users: data.users });
+						setStore({ users: data });
 					})
 					.catch(function(error) {
 						console.log("Looks like there was a problem: \n", error);

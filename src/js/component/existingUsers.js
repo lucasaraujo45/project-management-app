@@ -18,8 +18,13 @@ export const Users = props => {
 				<ul className="mx-auto list-unstyled">
 					{store.users.map((user, index) => (
 						<li key={index}>
-							{user.name}
-							{user.last}
+							<p className={classes.parag}>
+								Name: {user.name} {user.last}
+							</p>
+							<p className={classes.parag}>
+								ID: {user.id} email: {user.email}{" "}
+							</p>
+							<p className={classes.parag}>Phone: {user.phone}</p>
 						</li>
 					))}
 				</ul>
