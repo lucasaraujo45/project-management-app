@@ -170,11 +170,11 @@ export const SignUp = () => {
 							/>
 						</Grid>
 					</Grid>
-					<Link to="/usercreated">
-						<Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit}>
-							Sign Up
-						</Button>
-					</Link>
+					{/* <Link to="/usercreated"> */}
+					<Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit}>
+						Sign Up
+					</Button>
+					{/* </Link> */}
 					<Grid container justify="flex-end">
 						<Grid item>
 							<Link to="/login" variant="body2">
