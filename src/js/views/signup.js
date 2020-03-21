@@ -14,6 +14,7 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import { Context } from "../store/appContext";
+import { useHistory } from "react-router-dom";
 
 function Copyright() {
 	return (
@@ -48,9 +49,11 @@ const useStyles = makeStyles(theme => ({
 	}
 }));
 
-export const SignUp = () => {
+export const SignUp = props => {
 	const classes = useStyles();
 	const { store, actions } = useContext(Context);
+	let history = useHistory();
+	const form = React.createRef();
 
 	const [formValues, setFormValues] = useState({
 		name: "",
@@ -62,9 +65,20 @@ export const SignUp = () => {
 		todos: []
 	});
 
-	const handleSubmit = e => {
+	const handleSubmit = async e => {
 		e.preventDefault();
-		actions.signup(formValues);
+		let validity = form.current.reportValidity();
+		console.log(validity);
+		if (validity) {
+			new Promise(resolve => {
+				actions.signup(formValues);
+				setTimeout(function() {
+					resolve(true);
+					// console.log(store.message);
+					if (store.message === "New User Created!") history.push("/usercreated");
+				}, 2000);
+			});
+		}
 	};
 
 	const handleChange = e => {
@@ -92,11 +106,12 @@ export const SignUp = () => {
 				<Typography component="h1" variant="h5">
 					Sign up
 				</Typography>
-				<form className={classes.form} noValidate onSubmit={e => handleSubmit(e)}>
+				<form className={classes.form} ref={form} noValidate onSubmit={e => handleSubmit(e)}>
 					<Grid container spacing={2}>
 						<Grid item xs={12} sm={6}>
 							<TextField
 								autoComplete="fname"
+								type="text"
 								name="name"
 								variant="outlined"
 								required
@@ -111,6 +126,7 @@ export const SignUp = () => {
 							<TextField
 								variant="outlined"
 								required
+								type="text"
 								fullWidth
 								id="lastName"
 								label="Last Name"
@@ -124,6 +140,7 @@ export const SignUp = () => {
 								variant="outlined"
 								required
 								fullWidth
+								type="email"
 								id="email"
 								label="Email Address"
 								name="email"
@@ -149,6 +166,8 @@ export const SignUp = () => {
 								variant="outlined"
 								required
 								fullWidth
+								type="tel"
+								pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
 								id="phone"
 								label="Phone"
 								name="phone"
