@@ -76,7 +76,7 @@ export const SignUp = props => {
 					resolve(true);
 					// console.log(store.message);
 					if (store.message === "New User Created!") history.push("/usercreated");
-				}, 2000);
+				}, 500);
 			});
 		}
 	};
