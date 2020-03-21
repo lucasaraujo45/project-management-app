@@ -68,7 +68,7 @@ export const SignUp = props => {
 	const handleSubmit = async e => {
 		e.preventDefault();
 		let validity = form.current.reportValidity();
-		console.log(validity);
+		// console.log(validity);
 		if (validity) {
 			new Promise(resolve => {
 				actions.signup(formValues);
