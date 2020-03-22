@@ -65,6 +65,10 @@ export const CreateTodo = () => {
 		setAnchorEl(null);
 	};
 
+	// handleChange = event => {
+	// 	this.setState({ value: event.user.name });
+	// };
+
 	const openPop = Boolean(anchorEl);
 
 	const FORMAT = "MM/dd/yyyy";
@@ -82,6 +86,7 @@ export const CreateTodo = () => {
 	const toggleModal = () => {
 		setOpen(!open);
 	};
+
 	//////////////material ui modal open and close////////////
 	return (
 		<div>
@@ -143,10 +148,11 @@ export const CreateTodo = () => {
 									<Select
 										labelId="demo-simple-select-label"
 										id="demo-simple-select"
+										onChange={store.users.name}
 										value={store.list.user}>
-										<MenuItem value={10}>Lucas</MenuItem>
-										<MenuItem value={20}>Joe</MenuItem>
-										<MenuItem value={30}>Eddy</MenuItem>
+										{store.users.map((user, index) => (
+											<MenuItem key={index}>{user.name}</MenuItem>
+										))}
 									</Select>
 								</FormControl>
 							</Grid>
