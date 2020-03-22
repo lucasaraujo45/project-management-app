@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import Container from "@material-ui/core/Container";
 import { makeStyles } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
-import Link from "@material-ui/core/Link";
 import LinearProgress from "@material-ui/core/LinearProgress";
 import { Redirect } from "react-router-dom";
 
@@ -38,7 +37,6 @@ export const RedirectLogin = () => {
 				<div className={classes.root}>
 					<LinearProgress />
 				</div>
-				<Link href="/dashboard">Click to go to Dashboard</Link>
 			</div>
 		</Container>
 	);
