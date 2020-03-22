@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import Container from "@material-ui/core/Container";
 import { makeStyles } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Link from "@material-ui/core/Link";
 import LinearProgress from "@material-ui/core/LinearProgress";
+import { Redirect } from "react-router-dom";
 
 const useStyles = makeStyles(theme => ({
 	paper: {
@@ -24,8 +25,12 @@ const useStyles = makeStyles(theme => ({
 }));
 export const RedirectLogin = () => {
 	const classes = useStyles();
+	const [toHome, setToHome] = useState(false);
+
+	setTimeout(() => setToHome(true), 1500); /*  wait 1.5 secconds and then redirect */
 	return (
 		<Container component="main" maxWidth="xs">
+			{toHome ? <Redirect to="/dashboard" /> : null}
 			<CssBaseline />
 			<div className={classes.paper}>
 				<p className={classes.parag}>Thank you, Everything is correct!</p>

@@ -28,7 +28,7 @@ export const RedirectNewuser = () => {
 	const classes = useStyles();
 	const [toHome, setToHome] = useState(false);
 
-	setTimeout(() => setToHome(true), 1500); /* After clearing Todos, wait 1.5 secconds and then let's go back home */
+	setTimeout(() => setToHome(true), 1500); /* wait 1.5 secconds and then redirect */
 
 	return (
 		<Container component="main" maxWidth="xs">
