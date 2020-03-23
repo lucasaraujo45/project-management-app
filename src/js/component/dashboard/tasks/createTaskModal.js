@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Context } from "../../../store/appContext";
 import Modal from "@material-ui/core/Modal";
 import Button from "@material-ui/core/Button";
@@ -54,6 +54,7 @@ export const CreateTodo = () => {
 	const classes = useStyles();
 	const { store, actions } = useContext(Context);
 	const newTodo = React.createRef();
+	const [test, setTest] = useState();
 
 	const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -64,10 +65,6 @@ export const CreateTodo = () => {
 	const handlePopoverClose = () => {
 		setAnchorEl(null);
 	};
-
-	// handleChange = event => {
-	// 	this.setState({ value: event.user.name });
-	// };
 
 	const openPop = Boolean(anchorEl);
 
@@ -85,6 +82,13 @@ export const CreateTodo = () => {
 
 	const toggleModal = () => {
 		setOpen(!open);
+	};
+
+	/////////////////////handle user change////////
+	const [user, setUser] = React.useState("");
+
+	const handleChange = event => {
+		setUser(event.target.value);
 	};
 
 	//////////////material ui modal open and close////////////
@@ -148,10 +152,12 @@ export const CreateTodo = () => {
 									<Select
 										labelId="demo-simple-select-label"
 										id="demo-simple-select"
-										onChange={store.users.name}
-										value={store.list.user}>
+										onChange={handleChange}
+										value={user}>
 										{store.users.map((user, index) => (
-											<MenuItem key={index}>{user.name}</MenuItem>
+											<MenuItem key={index} value={user} onClick={() => setTest(user)}>
+												{user.name}
+											</MenuItem>
 										))}
 									</Select>
 								</FormControl>
