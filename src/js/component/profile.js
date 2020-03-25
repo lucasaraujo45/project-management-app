@@ -22,26 +22,25 @@ export const Profile = () => {
 				<CardMedia
 					component="img"
 					alt="Profile Image"
-					height="250"
-					image="https://racemph.com/wp-content/uploads/2016/09/profile-image-placeholder.png"
+					height="290"
+					image="https://www.irreverentgent.com/wp-content/uploads/2018/03/Awesome-Profile-Pictures-for-Guys-look-away2.jpg"
 					title="User Profile Image"
 				/>
 				<CardContent>
 					<Typography gutterBottom variant="h5" component="h2">
-						User Name
+						Eduard Chiticari
 					</Typography>
 					<Typography variant="body2" color="textSecondary" component="p">
-						Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging across all
-						continents except Antarctica
+						Some text about user. Hobbies, favorite places, motivation!
 					</Typography>
 				</CardContent>
 			</CardActionArea>
 			<CardActions>
 				<Button size="small" color="primary">
-					Share
+					Check team progress
 				</Button>
 				<Button size="small" color="primary">
-					Learn More
+					Open Todos
 				</Button>
 			</CardActions>
 		</Card>
