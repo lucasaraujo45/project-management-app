@@ -11,11 +11,12 @@ import { LatestTasksDone } from "./latestDoneChart";
 const useStyles = makeStyles({
 	root: {
 		maxWidth: "30%",
-		float: "left"
+		float: "left",
+		marginRight: "3%"
 	},
 	statistics: {
-		maxWidth: "70%",
-		float: "right"
+		maxWidth: "100%",
+		marginLeft: "3%"
 	}
 });
 

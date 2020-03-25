@@ -2,12 +2,12 @@ export const data = {
 	labels: ["1 Apr", "2 Apr", "3 Apr", "4 Apr", "5 Apr", "6 Apr", "7 Apr"],
 	datasets: [
 		{
-			label: "This year",
+			label: "This month",
 			backgroundColor: "blue",
 			data: [18, 5, 19, 27, 29, 19, 20]
 		},
 		{
-			label: "Last year",
+			label: "Last month",
 			backgroundColor: "grey",
 			data: [11, 20, 12, 29, 30, 25, 13]
 		}

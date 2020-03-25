@@ -26,28 +26,30 @@ export const LatestTasksDone = props => {
 	const classes = useStyles();
 
 	return (
-		<Card {...rest} className={clsx(classes.root, className)}>
-			<CardHeader
-				action={
-					<Button size="small" variant="text">
-						Last 7 days <ArrowDropDownIcon />
+		<div className="w-100">
+			<Card {...rest} className={clsx(classes.root, className)}>
+				<CardHeader
+					action={
+						<Button size="small" variant="text">
+							Last 7 days <ArrowDropDownIcon />
+						</Button>
+					}
+					title="Latest Completed Tasks"
+				/>
+				<Divider />
+				<CardContent>
+					<div className={classes.chartContainer}>
+						<Bar data={data} options={options} />
+					</div>
+				</CardContent>
+				<Divider />
+				<CardActions className={classes.actions}>
+					<Button className="py-2" color="primary" size="small" variant="text">
+						Overview <ArrowRightIcon />
 					</Button>
-				}
-				title="Latest Sales"
-			/>
-			<Divider />
-			<CardContent>
-				<div className={classes.chartContainer}>
-					<Bar data={data} options={options} />
-				</div>
-			</CardContent>
-			<Divider />
-			<CardActions className={classes.actions}>
-				<Button color="primary" size="small" variant="text">
-					Overview <ArrowRightIcon />
-				</Button>
-			</CardActions>
-		</Card>
+				</CardActions>
+			</Card>
+		</div>
 	);
 };
 
