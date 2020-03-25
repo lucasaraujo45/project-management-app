@@ -24,7 +24,9 @@ export const ProfileMenu = () => {
 				<AccountCircleRoundedIcon style={{ color: grey[50] }} fontSize="large" />
 			</Button>
 			<Menu id="simple-menu" anchorEl={anchorEl} keepMounted open={Boolean(anchorEl)} onClose={handleClose}>
-				<MenuItem onClick={handleClose}>Profile</MenuItem>
+				<MenuItem onClick={handleClose}>
+					<Link href="/dashboard/profile">Profile</Link>
+				</MenuItem>
 				<MenuItem onClick={handleClose}>My Team</MenuItem>
 				<Divider />
 				<MenuItem onClick={handleClose}>
