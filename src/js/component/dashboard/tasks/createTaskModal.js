@@ -58,6 +58,7 @@ export const CreateTodo = () => {
 
 	const [anchorEl, setAnchorEl] = React.useState(null);
 
+	//handles modal open and close
 	const handlePopoverOpen = event => {
 		setAnchorEl(event.currentTarget);
 	};
@@ -84,7 +85,7 @@ export const CreateTodo = () => {
 		setOpen(!open);
 	};
 
-	/////////////////////handle user change////////
+	/////////////////////handle user change select dropdown////////
 	const [user, setUser] = React.useState("");
 
 	const handleChange = event => {
@@ -155,6 +156,7 @@ export const CreateTodo = () => {
 										onChange={handleChange}
 										value={user}>
 										{store.users.map((user, index) => (
+											//maps users in database and ads them to MenuItems in select dropdown
 											<MenuItem key={index} value={user} onClick={() => setTest(user)}>
 												{user.name}
 											</MenuItem>
