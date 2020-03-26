@@ -24,7 +24,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 		},
 		actions: {
 			loadUsers: () => {
-				fetch("https://3000-ae8400d5-34b8-494a-b953-b85dbd8a431f.ws-ap01.gitpod.io/user") // fetching users from API --- @EddyKudo
+				fetch("https://3000-ae8400d5-34b8-494a-b953-b85dbd8a431f.ws-us02.gitpod.io/user") // fetching users from API --- @EddyKudo
 					.then(function(response) {
 						if (!response.ok) {
 							throw Error(response.statusText);
