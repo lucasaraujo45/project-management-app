@@ -89,7 +89,8 @@ export const Users = props => {
 										<p className={classes.parag} id="transition-modal-description">
 											{user.todos.map((task, i) => (
 												<p key={i} className={classes.parag}>
-													{task.id} : {task.text}
+													{task.id} : {task.text} Created {task.createdDate}, Due{" "}
+													{task.dueDate}
 												</p>
 											))}
 										</p>
