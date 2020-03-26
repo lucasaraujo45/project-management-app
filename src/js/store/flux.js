@@ -23,13 +23,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			]
 		},
 		actions: {
-			// loadTasks: (item, element) => {
-			// 	fetch("https://project-management-tue.herokuapp.com/todo")
-			// 		.then(response => response.json())
-			// 		.then(data => setStore({ list: data.results }));
-			// },
 			loadUsers: () => {
-				fetch("https://3000-ae8400d5-34b8-494a-b953-b85dbd8a431f.ws-us02.gitpod.io/user") // fetching users from API --- @EddyKudo
+				fetch("https://3000-ae8400d5-34b8-494a-b953-b85dbd8a431f.ws-ap01.gitpod.io/user") // fetching users from API --- @EddyKudo
 					.then(function(response) {
 						if (!response.ok) {
 							throw Error(response.statusText);
@@ -82,7 +77,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			loginMat: data => {
 				const { email, password } = data;
-				fetch("https://3000-ae8400d5-34b8-494a-b953-b85dbd8a431f.ws-us02.gitpod.io/login", {
+				fetch("https://3000-ae8400d5-34b8-494a-b953-b85dbd8a431f.ws-ap01.gitpod.io/login", {
 					method: "GET",
 					headers: { "Content-Type": "application/json" },
 					body: JSON.stringify({ email: email, password: password })
@@ -102,7 +97,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			signup: data => {
 				const { name, last, password, email, phone, todos } = data;
-				fetch("https://3000-ae8400d5-34b8-494a-b953-b85dbd8a431f.ws-us02.gitpod.io/user", {
+				fetch("https://3000-ae8400d5-34b8-494a-b953-b85dbd8a431f.ws-ap01.gitpod.io/user", {
 					method: "POST",
 					headers: { "Content-Type": "application/json" },
 					body: JSON.stringify({
