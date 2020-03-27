@@ -4,7 +4,6 @@ import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import AccountCircleRoundedIcon from "@material-ui/icons/AccountCircleRounded";
 import Divider from "@material-ui/core/Divider";
-import Link from "@material-ui/core/Link";
 import grey from "@material-ui/core/colors/grey";
 
 export const ProfileMenu = () => {

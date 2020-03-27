@@ -15,8 +15,7 @@ const useStyles = makeStyles(theme => ({
 	},
 	userIcon: {
 		fontSize: "120px",
-		float: "right",
-		marginLeft: "10px"
+		float: "right"
 	},
 	button: {
 		margin: theme.spacing(1)
@@ -38,8 +37,10 @@ export const Users = props => {
 	const classes = useStyles();
 	const { store, actions } = useContext(Context);
 	const [open, setOpen] = React.useState(false);
+	const [selectedUser, setSelectedUser] = React.useState(0);
 
-	const handleOpen = () => {
+	const handleOpen = index => {
+		setSelectedUser(index);
 		setOpen(true);
 	};
 
@@ -53,52 +54,51 @@ export const Users = props => {
 					{store.users.map((user, index) => (
 						<li key={index}>
 							<div className={classes.userIcon}>
-								<i className="fas fa-user" />
+								<i className="fas fa-user pl-4" />
+								<Box display="flex" alignItems="flex-end" justifyContent="flex-end">
+									<Button
+										variant="contained"
+										color="primary"
+										onClick={e => handleOpen(index)}
+										className={classes.button}
+										startIcon={<ListRoundedIcon />}>
+										{user.name} tasks
+									</Button>
+								</Box>
 							</div>
 							<p className={classes.parag}>
 								Name: {user.name} {user.last}
 							</p>
-							<p className={classes.parag}>
-								ID: {user.id} email: {user.email}{" "}
-							</p>
+							<p className={classes.parag}>Company_ID: {user.id} </p>
+							<p className={classes.parag}>email: {user.email} </p>
 							<p className={classes.parag}>Phone: {user.phone}</p>
-							<Box display="flex" alignItems="flex-end" justifyContent="flex-end">
-								<Button
-									variant="contained"
-									color="primary"
-									onClick={handleOpen}
-									className={classes.button}
-									startIcon={<ListRoundedIcon />}>
-									{user.name} tasks
-								</Button>
-							</Box>
-							<Modal
-								aria-labelledby="transition-modal-title"
-								aria-describedby="transition-modal-description"
-								className={classes.modal}
-								open={open}
-								onClose={handleClose}
-								closeAfterTransition
-								BackdropComponent={Backdrop}
-								BackdropProps={{
-									timeout: 500
-								}}>
-								<Fade in={open}>
-									<div className={classes.paper}>
-										<h2 id="transition-modal-title">Tasks list</h2>
-										<p className={classes.parag} id="transition-modal-description">
-											{user.todos.map((task, i) => (
-												<p key={i} className={classes.parag}>
-													{task.id} : {task.text} Created {task.createdDate}, Due{" "}
-													{task.dueDate}
-												</p>
-											))}
-										</p>
-									</div>
-								</Fade>
-							</Modal>
 						</li>
 					))}
+					<Modal
+						aria-labelledby="transition-modal-title"
+						aria-describedby="transition-modal-description"
+						className={classes.modal}
+						open={open}
+						onClose={handleClose}
+						closeAfterTransition
+						BackdropComponent={Backdrop}
+						BackdropProps={{
+							timeout: 500
+						}}>
+						<Fade in={open}>
+							<div className={classes.paper}>
+								<h2 id="transition-modal-title">Tasks list</h2>
+								<p className={classes.parag} id="transition-modal-description">
+									{store.users[selectedUser].todos.map((task, i) => (
+										<p key={i} className={classes.parag}>
+											# {task.id}: <b>{task.text}</b> <i>Created:</i> {task.createdDate} -{" "}
+											<i>Due:</i> {task.dueDate}
+										</p>
+									))}
+								</p>
+							</div>
+						</Fade>
+					</Modal>
 				</ul>
 			) : (
 				<p className={classes.parag}>No Users</p>
