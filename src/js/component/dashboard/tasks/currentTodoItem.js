@@ -29,6 +29,8 @@ export const CurrentTodoItem = () => {
 					<TableRow key={index}>
 						<TableCell>
 							<MenuIcon />
+						</TableCell>
+						<TableCell>
 							<span
 								className="itemText"
 								onClick={item.alarm ? () => actions.unsetalarm(index) : () => actions.setalarm(index)}>
