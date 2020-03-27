@@ -8,16 +8,14 @@ import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
 import { startOfToday } from "date-fns";
 import { format } from "date-fns";
-
-const useStyles = makeStyles({
-	ul: {
-		paddingLeft: "1rem",
-		paddingRight: "1rem"
-	}
-});
+import Table from "@material-ui/core/Table";
+import TableBody from "@material-ui/core/TableBody";
+import TableCell from "@material-ui/core/TableCell";
+import TableContainer from "@material-ui/core/TableContainer";
+import TableHead from "@material-ui/core/TableHead";
+import TableRow from "@material-ui/core/TableRow";
 
 export const CurrentTodoItem = () => {
-	const classes = useStyles();
 	const { store, actions } = useContext(Context);
 	const currentTodo = React.createRef();
 	let todayDate = startOfToday();
@@ -25,64 +23,52 @@ export const CurrentTodoItem = () => {
 	console.log(todayDate);
 
 	return (
-		<ul className={classes.ul + " list-unstyled"}>
+		<>
 			{store.list.map((item, index) => {
 				return (
-					<li key={index}>
-						<div className="container-fluid pb-2">
-							<Grid container spacing={2}>
-								<Grid xs={1}>
-									<MenuIcon />
-								</Grid>
-								<Grid xs={1}>
-									<span
-										className="itemText"
-										onClick={
-											item.alarm ? () => actions.unsetalarm(index) : () => actions.setalarm(index)
-										}>
-										{item.user}
-									</span>
-								</Grid>
-								<Grid xs={4}>
-									<span
-										className="itemText"
-										onClick={
-											item.alarm ? () => actions.unsetalarm(index) : () => actions.setalarm(index)
-										}>
-										{item.todo}
-									</span>
-								</Grid>
-								<Grid xs={1}>
-									<IconButton className="checkmark">
-										<AlarmIcon
-											className={item.alarm ? "todoItem alarm" : "todoItem"}
-											onClick={
-												item.alarm
-													? () => actions.unsetalarm(index)
-													: () => actions.setalarm(index)
-											}
-											checked={item.alarm}
-										/>
-									</IconButton>
-								</Grid>
-								<Grid xs={2}>{format(todayDate, "MMM do yyyy")}</Grid>
-								<Grid xs={2}>{format(todayDate, "MMM do yyyy")}</Grid>
-								<Grid xs={1}>
-									<Button
-										className="ml-1 mr-1"
-										onClick={() => actions.completeTodo(index)}
-										data-toggle="tooltip"
-										data-placement="bottom"
-										variant="outlined"
-										color="secondary">
-										Complete
-									</Button>
-								</Grid>
-							</Grid>
-						</div>{" "}
-					</li>
+					<TableRow key={index}>
+						<TableCell>
+							<MenuIcon />
+							<span
+								className="itemText"
+								onClick={item.alarm ? () => actions.unsetalarm(index) : () => actions.setalarm(index)}>
+								{item.user}
+							</span>
+						</TableCell>
+						<TableCell>
+							<span
+								className="itemText"
+								onClick={item.alarm ? () => actions.unsetalarm(index) : () => actions.setalarm(index)}>
+								{item.todo}
+							</span>
+						</TableCell>
+						<TableCell align="right">
+							<IconButton>
+								<AlarmIcon
+									className={item.alarm ? "todoItem alarm" : "todoItem"}
+									onClick={
+										item.alarm ? () => actions.unsetalarm(index) : () => actions.setalarm(index)
+									}
+									checked={item.alarm}
+								/>
+							</IconButton>
+						</TableCell>
+						<TableCell align="right">{format(todayDate, "MMM do yyyy")}</TableCell>
+						<TableCell align="right">{format(todayDate, "MMM do yyyy")}</TableCell>
+						<TableCell align="right">
+							<Button
+								className="ml-1 mr-1"
+								onClick={() => actions.completeTodo(index)}
+								data-toggle="tooltip"
+								data-placement="bottom"
+								variant="outlined"
+								color="secondary">
+								Complete
+							</Button>
+						</TableCell>
+					</TableRow>
 				);
 			})}
-		</ul>
+		</>
 	);
 };
