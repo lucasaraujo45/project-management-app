@@ -65,7 +65,7 @@ export const Tasks = props => {
 						<TableBody>
 							<TableRow>
 								<TableCell>
-									<p> </p>
+									
 								</TableCell>
 								<TableCell>
 									<h3>User</h3>
