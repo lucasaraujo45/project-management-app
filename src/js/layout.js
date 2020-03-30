@@ -4,13 +4,9 @@ import ScrollToTop from "./component/scrollToTop";
 
 // import { Home } from "./views/home";
 import { Landing } from "./views/landing";
-// import { Login } from "./views/login";
 import { LoginMaterial } from "./views/loginMaterial";
 import { SignUp } from "./views/signup";
 import { Dashboard } from "./views/dashboard";
-
-// import { Demo } from "./views/demo";
-// import { Single } from "./views/single";
 import injectContext from "./store/appContext";
 
 import { Navbar } from "./component/navbar";
