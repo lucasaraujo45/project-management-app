@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -50,6 +50,13 @@ const useStyles = makeStyles(theme => ({
 export const LoginMaterial = () => {
 	const classes = useStyles();
 	const { store, actions } = useContext(Context);
+
+	useEffect(() => {
+		// let tokenCheck = JSON.parse(localStorage.getItem)("project-man-app");
+		// if (tokenCheck !== null) {
+		// 	actions.saveToken(tokenCheck); // token is present, so do something (set loggedIn, maybe?)
+		// }
+	}, []);
 
 	const [formValues, setFormValues] = useState({
 		email: "",
@@ -123,7 +130,7 @@ export const LoginMaterial = () => {
 					/>
 					<Button
 						href="/loginsuccess"
-						type="button"
+						type="submit"
 						fullWidth
 						variant="contained"
 						color="primary"

@@ -75,12 +75,17 @@ const getState = ({ getStore, getActions, setStore }) => {
 				//setStore({ token: null });
 				console.log("logout");
 			},
+			saveToken: data => {
+				setStore(data);
+			},
 			loginMat: data => {
 				const { email, password } = data;
-				fetch("https://3000-ae8400d5-34b8-494a-b953-b85dbd8a431f.ws-ap01.gitpod.io/login", {
+				fetch("https://3000-ae8400d5-34b8-494a-b953-b85dbd8a431f.ws-us02.gitpod.io/login", {
 					method: "GET",
-					headers: { "Content-Type": "application/json" },
-					body: JSON.stringify({ email: email, password: password })
+					headers: {
+						"Content-Type": "application/json",
+						Authorization: "Basic " + window.btoa(email + ":" + password)
+					}
 				})
 					.then(function(response) {
 						if (!response.ok) {
@@ -90,6 +95,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 					.then(result => {
 						setStore(result);
+						console.log(result);
+						localStorage.setItem("project-man-app", JSON.stringify(result));
 					})
 					.catch(function(error) {
 						console.log("Looks like there was a problem: \n", error);

@@ -55,6 +55,23 @@ export const CreateTodo = () => {
 	const { store, actions } = useContext(Context);
 	const newTodo = React.createRef();
 	const [test, setTest] = useState();
+	//useState for Form values
+	const [formValues, setFormValues] = useState({
+		text: "",
+		user: "",
+		createdDate: "",
+		dueDate: ""
+	});
+	// function to handle change in the form
+	const handleInputChange = e => {
+		let key = e.target.name;
+		let value;
+
+		setFormValues({
+			...formValues,
+			[key]: value
+		});
+	};
 
 	const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -143,7 +160,13 @@ export const CreateTodo = () => {
 						</Grid>
 						<Grid>
 							<form onSubmit={createNewTodo} className="mb-5">
-								<input className="form-control" type="text" ref={newTodo} />
+								<input
+									className="form-control"
+									type="text"
+									name="text"
+									onChange={e => handleInputChange(e)}
+									ref={newTodo}
+								/>
 							</form>
 						</Grid>
 						<Grid container spacing={3} className="ml-3">
@@ -151,8 +174,9 @@ export const CreateTodo = () => {
 								<FormControl className={classes.formControl}>
 									<InputLabel id="demo-simple-select-label">User</InputLabel>
 									<Select
+										name="user"
 										labelId="demo-simple-select-label"
-										id="demo-simple-select"
+										id="user"
 										onChange={handleChange}
 										value={user}>
 										{store.users.map((user, index) => (
@@ -166,6 +190,8 @@ export const CreateTodo = () => {
 							</Grid>
 							<Grid xs={6} className="mt-4">
 								<DayPickerInput
+									onChange={e => handleInputChange(e)}
+									name="createdDate"
 									formatDate={formatDate}
 									format={FORMAT}
 									parseDate={parseDate}
