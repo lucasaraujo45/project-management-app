@@ -190,7 +190,13 @@ export const SignUp = props => {
 						</Grid>
 					</Grid>
 					{/* <Link to="/usercreated"> */}
-					<Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit}>
+					<Button
+						type="submit"
+						//href="/usercreated"
+						fullWidth
+						variant="contained"
+						color="primary"
+						className={classes.submit}>
 						Sign Up
 					</Button>
 					{/* </Link> */}
