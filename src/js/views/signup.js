@@ -192,7 +192,8 @@ export const SignUp = props => {
 					{/* <Link to="/usercreated"> */}
 					<Button
 						type="submit"
-						//href="/usercreated"
+						component={Link}
+						to="/usercreated"
 						fullWidth
 						variant="contained"
 						color="primary"

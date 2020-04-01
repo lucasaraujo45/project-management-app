@@ -38,12 +38,11 @@ export const Users = props => {
 	const { store, actions } = useContext(Context);
 	const [open, setOpen] = React.useState(false);
 	const [selectedUser, setSelectedUser] = React.useState(0);
-
+	// handle modal open and close functions
 	const handleOpen = index => {
 		setSelectedUser(index);
 		setOpen(true);
 	};
-
 	const handleClose = () => {
 		setOpen(false);
 	};
