@@ -13,6 +13,7 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import { Context } from "../store/appContext";
+import { useHistory } from "react-router-dom";
 
 function Copyright() {
 	return (
@@ -48,6 +49,8 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export const LoginMaterial = () => {
+	const form = React.createRef();
+	let history = useHistory();
 	const classes = useStyles();
 	const { store, actions } = useContext(Context);
 
@@ -65,7 +68,15 @@ export const LoginMaterial = () => {
 	});
 	const handleSubmit = e => {
 		e.preventDefault();
-		actions.loginMat(formValues);
+
+		let validity = form.current.reportValidity();
+		// console.log(validity);
+		if (validity) {
+			let runSignup = actions.loginMat(formValues);
+			runSignup.then(res => {
+				if (store.token !== null) history.push("/loginsuccess");
+			});
+		}
 	};
 	const handleChange = e => {
 		let key = e.target.name;
@@ -91,7 +102,7 @@ export const LoginMaterial = () => {
 				<Typography component="h1" variant="h5">
 					Login to Account
 				</Typography>
-				<form className={classes.form} noValidate onSubmit={e => handleSubmit(e)}>
+				<form className={classes.form} ref={form} noValidate onSubmit={e => handleSubmit(e)}>
 					<TextField
 						variant="outlined"
 						margin="normal"
@@ -128,14 +139,7 @@ export const LoginMaterial = () => {
 						}
 						label="Remember me"
 					/>
-					<Button
-						// component={Link}
-						href="/loginsuccess"
-						type="submit"
-						fullWidth
-						variant="contained"
-						color="primary"
-						className={classes.submit}>
+					<Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit}>
 						Login
 					</Button>
 					<Grid container>

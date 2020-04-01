@@ -1,7 +1,7 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			token: "",
+			token: null,
 			users: [],
 			list: [
 				{
@@ -80,7 +80,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			loginMat: data => {
 				const { email, password } = data;
-				fetch("https://3000-ae8400d5-34b8-494a-b953-b85dbd8a431f.ws-us02.gitpod.io/login", {
+				return fetch("https://3000-ae8400d5-34b8-494a-b953-b85dbd8a431f.ws-us02.gitpod.io/login", {
 					method: "GET",
 					headers: {
 						"Content-Type": "application/json",
@@ -104,7 +104,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			signup: data => {
 				const { name, last, password, email, phone, todos } = data;
-				fetch("https://3000-ae8400d5-34b8-494a-b953-b85dbd8a431f.ws-us02.gitpod.io/user", {
+				return fetch("https://3000-ae8400d5-34b8-494a-b953-b85dbd8a431f.ws-us02.gitpod.io/user", {
 					method: "POST",
 					headers: { "Content-Type": "application/json" },
 					body: JSON.stringify({

@@ -65,18 +65,13 @@ export const SignUp = props => {
 		todos: []
 	});
 
-	const handleSubmit = async e => {
+	const handleSubmit = e => {
 		e.preventDefault();
 		let validity = form.current.reportValidity();
-		// console.log(validity);
 		if (validity) {
-			new Promise(resolve => {
-				actions.signup(formValues);
-				setTimeout(function() {
-					resolve(true);
-					// console.log(store.message);
-					if (store.message === "New User Created!") history.push("/usercreated");
-				}, 500);
+			let runSignup = actions.signup(formValues);
+			runSignup.then(res => {
+				if (store.message === "New User Created!") history.push("/usercreated");
 			});
 		}
 	};
@@ -189,18 +184,18 @@ export const SignUp = props => {
 							/>
 						</Grid>
 					</Grid>
-					{/* <Link to="/usercreated"> */}
+
 					<Button
 						type="submit"
-						component={Link}
-						to="/usercreated"
+						// component={Link}
+						// to="/usercreated"
 						fullWidth
 						variant="contained"
 						color="primary"
 						className={classes.submit}>
 						Sign Up
 					</Button>
-					{/* </Link> */}
+
 					<Grid container justify="flex-end">
 						<Grid item>
 							<Link to="/login" variant="body2">
