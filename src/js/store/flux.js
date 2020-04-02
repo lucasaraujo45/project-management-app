@@ -8,15 +8,15 @@ const getState = ({ getStore, getActions, setStore }) => {
 					text: "add message showing the day of the week",
 					alarm: false,
 					user: "Lucas",
-					createdDate: "1/1/00",
-					dueDate: "1/1/00"
+					createdDate: "04/01/2020",
+					dueDate: "04/11/2020"
 				},
 				{
 					text: "Walk the dog",
 					alarm: false,
 					user: "Joe",
-					createdDate: "1/1/00",
-					dueDate: "1/1/00"
+					createdDate: "04/01/2020",
+					dueDate: "04/12/2020"
 				}
 			],
 			completed: [
@@ -28,7 +28,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 		},
 		actions: {
 			loadUsers: () => {
-				fetch("https://3000-ae8400d5-34b8-494a-b953-b85dbd8a431f.ws-us02.gitpod.io/user") // fetching users from API --- @EddyKudo
+				fetch("https://3000-c4de9fdb-9f99-48bd-861e-e57ba5f40b60.ws-us02.gitpod.io/user") // fetching users from API --- @EddyKudo
 					.then(function(response) {
 						if (!response.ok) {
 							throw Error(response.statusText);
@@ -36,8 +36,24 @@ const getState = ({ getStore, getActions, setStore }) => {
 						return response.json();
 					})
 					.then(data => {
-						console.log(data);
+						//console.log(data);
 						setStore({ users: data });
+					})
+					.catch(function(error) {
+						console.log("Looks like there was a problem: \n", error);
+					});
+			},
+			loadTodos: () => {
+				fetch("https://3000-c4de9fdb-9f99-48bd-861e-e57ba5f40b60.ws-us02.gitpod.io/todo")
+					.then(function(response) {
+						if (!response.ok) {
+							throw Error(response.statusText);
+						}
+						return response.json();
+					})
+					.then(data => {
+						//console.log(data);
+						setStore({ list: data });
 					})
 					.catch(function(error) {
 						console.log("Looks like there was a problem: \n", error);
@@ -88,7 +104,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			loginMat: data => {
 				const { email, password } = data;
-				return fetch("https://3000-ae8400d5-34b8-494a-b953-b85dbd8a431f.ws-us02.gitpod.io/login", {
+				return fetch("https://3000-c4de9fdb-9f99-48bd-861e-e57ba5f40b60.ws-us02.gitpod.io/login", {
 					method: "GET",
 					headers: {
 						"Content-Type": "application/json",
@@ -112,7 +128,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			signup: data => {
 				const { name, last, password, email, phone, todos } = data;
-				return fetch("https://3000-ae8400d5-34b8-494a-b953-b85dbd8a431f.ws-us02.gitpod.io/user", {
+				return fetch("https://3000-c4de9fdb-9f99-48bd-861e-e57ba5f40b60.ws-us02.gitpod.io/user", {
 					method: "POST",
 					headers: { "Content-Type": "application/json" },
 					body: JSON.stringify({
