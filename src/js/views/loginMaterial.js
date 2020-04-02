@@ -74,6 +74,7 @@ export const LoginMaterial = () => {
 		if (validity) {
 			let runSignup = actions.loginMat(formValues);
 			runSignup.then(res => {
+				console.log(res);
 				if (store.token !== null) history.push("/loginsuccess");
 			});
 		}

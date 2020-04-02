@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, forwardRef } from "react";
 import { Context } from "../../../store/appContext";
 import Modal from "@material-ui/core/Modal";
 import Button from "@material-ui/core/Button";
@@ -18,6 +18,8 @@ import dateFnsFormat from "date-fns/format";
 import dateFnsParse from "date-fns/parse";
 import "react-day-picker/lib/style.css";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
+import { format } from "date-fns";
+import { startOfToday } from "date-fns";
 //component that adds task to tasklist(modal)
 function parseDate(str, format, locale) {
 	const parsed = dateFnsParse(str, format, new Date(), { locale });
@@ -55,17 +57,24 @@ export const CreateTodo = () => {
 	const { store, actions } = useContext(Context);
 	const newTodo = React.createRef();
 	const [test, setTest] = useState();
+	let todayDate = startOfToday();
 	//useState for Form values
 	const [formValues, setFormValues] = useState({
 		text: "",
 		user: "",
-		createdDate: "",
+		createdDate: format(todayDate, "MM/dd/yyyy"),
 		dueDate: ""
 	});
 	// function to handle change in the form
 	const handleInputChange = e => {
 		let key = e.target.name;
-		let value;
+		let value = "";
+
+		if (key === "user") {
+			value = e.target.value.id;
+		} else {
+			value = e.target.value;
+		}
 
 		setFormValues({
 			...formValues,
@@ -90,8 +99,8 @@ export const CreateTodo = () => {
 
 	const createNewTodo = e => {
 		e.preventDefault();
-		actions.addTodo(newTodo.current.value);
-		newTodo.current.value = "";
+
+		actions.addTodo(formValues);
 		toggleModal();
 	};
 
@@ -102,11 +111,13 @@ export const CreateTodo = () => {
 		setOpen(!open);
 	};
 
-	/////////////////////handle user change select dropdown////////
-	const [user, setUser] = React.useState("");
-
-	const handleChange = event => {
-		setUser(event.target.value);
+	const handleDayChange = day => {
+		// day will be a dateTime object, needs to be converted to string
+		let formatedDate = dateFnsFormat(day, FORMAT);
+		setFormValues({
+			...formValues,
+			dueDate: formatedDate
+		});
 	};
 
 	//////////////material ui modal open and close////////////
@@ -177,8 +188,7 @@ export const CreateTodo = () => {
 										name="user"
 										labelId="demo-simple-select-label"
 										id="user"
-										onChange={handleChange}
-										value={user}>
+										onChange={e => handleInputChange(e)}>
 										{store.users.map((user, index) => (
 											//maps users in database and ads them to MenuItems in select dropdown
 											<MenuItem key={index} value={user} onClick={() => setTest(user)}>
@@ -190,8 +200,9 @@ export const CreateTodo = () => {
 							</Grid>
 							<Grid xs={6} className="mt-4">
 								<DayPickerInput
-									onChange={e => handleInputChange(e)}
-									name="createdDate"
+									onDayChange={day => handleDayChange(day)}
+									name="dueDate"
+									type="dueDate"
 									formatDate={formatDate}
 									format={FORMAT}
 									parseDate={parseDate}

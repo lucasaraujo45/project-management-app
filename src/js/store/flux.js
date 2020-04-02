@@ -5,14 +5,18 @@ const getState = ({ getStore, getActions, setStore }) => {
 			users: [],
 			list: [
 				{
-					todo: "add message showing the day of the week",
+					text: "add message showing the day of the week",
 					alarm: false,
-					user: "Lucas"
+					user: "Lucas",
+					createdDate: "1/1/00",
+					dueDate: "1/1/00"
 				},
 				{
-					todo: "Walk the dog",
+					text: "Walk the dog",
 					alarm: false,
-					user: "Joe"
+					user: "Joe",
+					createdDate: "1/1/00",
+					dueDate: "1/1/00"
 				}
 			],
 			completed: [
@@ -39,13 +43,17 @@ const getState = ({ getStore, getActions, setStore }) => {
 						console.log("Looks like there was a problem: \n", error);
 					});
 			},
-			addTodo: (item, element) => {
+			addTodo: (todoObject, element) => {
 				let store = getStore();
-				store.list.push({
-					todo: item,
-					alarm: false
-				});
+
+				// This should happen in the .then() of the fetch after you have successfully update the database
+				let username = store.users.filter(user => user.id === todoObject.user)[0].name;
+				todoObject.user = username;
+
+				store.list.push(todoObject);
 				setStore({ store });
+
+				// Here , you should requery the database and hydrate the store
 			},
 			completeTodo: id => {
 				let store = getStore();
@@ -95,7 +103,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 					.then(result => {
 						setStore(result);
-						console.log(result);
+						// console.log(result);
 						localStorage.setItem("project-man-app", JSON.stringify(result));
 					})
 					.catch(function(error) {

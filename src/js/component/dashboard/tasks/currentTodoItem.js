@@ -41,7 +41,7 @@ export const CurrentTodoItem = () => {
 							<span
 								className="itemText"
 								onClick={item.alarm ? () => actions.unsetalarm(index) : () => actions.setalarm(index)}>
-								{item.todo}
+								{item.text}
 							</span>
 						</TableCell>
 						<TableCell align="right">
@@ -55,8 +55,8 @@ export const CurrentTodoItem = () => {
 								/>
 							</IconButton>
 						</TableCell>
-						<TableCell align="right">{format(todayDate, "MMM do yyyy")}</TableCell>
-						<TableCell align="right">{format(todayDate, "MMM do yyyy")}</TableCell>
+						<TableCell align="right">{item.createdDate}</TableCell>
+						<TableCell align="right">{item.dueDate}</TableCell>
 						<TableCell align="right">
 							<Button
 								className="ml-1 mr-1"
