@@ -10,7 +10,7 @@
 
   "routes": [
       {
-        "src":"/(.+)\.([a-zA-Z]{2,4})$",
+        "src":"/(.+)\\.([a-zA-Z]{2,4})$",
         "headers": { "cache-control": "s-maxage=31536000,immutable" },
         "dest":"/$1.$2"
       },
