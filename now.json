@@ -10,14 +10,14 @@
 
   "routes": [
       {
-        "src":"/(.*).png",
+        "src":"/(.+)\\.([a-zA-Z]{2,4})$",
         "headers": { "cache-control": "s-maxage=31536000,immutable" },
-        "dest":"/$1.png"
+        "dest":"/$1.$2"
       },
       {
-        "src":"/(.*).bundle.js",
+        "src":"/bundle.js",
         "headers": { "cache-control": "s-maxage=31536000,immutable" },
-        "dest":"/$1.bundle.js"
+        "dest":"/bundle.js"
       },
     {
       "src": "/(.*)",
