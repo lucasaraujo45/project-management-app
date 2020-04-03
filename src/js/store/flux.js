@@ -142,7 +142,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						return response.json();
 					})
 					.then(result => {
-						setStore(result);
+						setStore({ token: result.token, id: result.id });
 						// console.log(result);
 						localStorage.setItem("project-man-app", JSON.stringify(result));
 					})
