@@ -58,6 +58,7 @@ export const CreateTodo = () => {
 	const newTodo = React.createRef();
 	const [test, setTest] = useState();
 	let todayDate = startOfToday();
+
 	//useState for Form values
 	const [formValues, setFormValues] = useState({
 		text: "",
@@ -65,6 +66,7 @@ export const CreateTodo = () => {
 		createdDate: format(todayDate, "MM/dd/yyyy"),
 		dueDate: ""
 	});
+
 	// function to handle change in the form
 	const handleInputChange = e => {
 		let key = e.target.name;
@@ -101,6 +103,7 @@ export const CreateTodo = () => {
 		e.preventDefault();
 
 		actions.addTodo(formValues);
+		actions.sendTasktoDB(formValues);
 		toggleModal();
 	};
 
@@ -181,7 +184,7 @@ export const CreateTodo = () => {
 							</form>
 						</Grid>
 						<Grid container spacing={3} className="ml-3">
-							<Grid xs={6}>
+							<Grid xs={5}>
 								<FormControl className={classes.formControl}>
 									<InputLabel id="demo-simple-select-label">User</InputLabel>
 									<Select
@@ -198,16 +201,19 @@ export const CreateTodo = () => {
 									</Select>
 								</FormControl>
 							</Grid>
-							<Grid xs={6} className="mt-4">
-								<DayPickerInput
-									onDayChange={day => handleDayChange(day)}
-									name="dueDate"
-									type="dueDate"
-									formatDate={formatDate}
-									format={FORMAT}
-									parseDate={parseDate}
-									placeholder={`${dateFnsFormat(new Date(), FORMAT)}`}
-								/>
+							<Grid xs={7} className="mt-4">
+								<p className={classes.parag}>
+									Due Date{" "}
+									<DayPickerInput
+										onDayChange={day => handleDayChange(day)}
+										name="dueDate"
+										type="dueDate"
+										formatDate={formatDate}
+										format={FORMAT}
+										parseDate={parseDate}
+										placeholder={`${dateFnsFormat(new Date(), FORMAT)}`}
+									/>
+								</p>
 							</Grid>
 						</Grid>
 						<Grid container spacing={3} className="mt-5 ml-5">

@@ -96,7 +96,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				setStore({ store });
 			},
 			logout: () => {
-				//setStore({ token: null });
+				setStore({ token: null });
 				console.log("logout");
 			},
 			saveToken: data => {
@@ -121,6 +121,30 @@ const getState = ({ getStore, getActions, setStore }) => {
 						setStore(result);
 						// console.log(result);
 						localStorage.setItem("project-man-app", JSON.stringify(result));
+					})
+					.catch(function(error) {
+						console.log("Looks like there was a problem: \n", error);
+					});
+			},
+			sendTasktoDB: data => {
+				const { text, createdDate, dueDate, user } = data;
+				return fetch(`https://3000-c4de9fdb-9f99-48bd-861e-e57ba5f40b60.ws-us02.gitpod.io/todo/${user}`, {
+					method: "POST",
+					headers: { "Content-Type": "application/json" },
+					body: JSON.stringify({
+						text: text,
+						createdDate: createdDate,
+						dueDate: dueDate
+					})
+				})
+					.then(function(response) {
+						if (!response.ok) {
+							throw Error(response.statusText);
+						}
+						return response.json();
+					})
+					.then(result => {
+						setStore(result);
 					})
 					.catch(function(error) {
 						console.log("Looks like there was a problem: \n", error);
