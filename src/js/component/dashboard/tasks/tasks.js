@@ -50,12 +50,12 @@ export const Tasks = props => {
 								<TableCell />
 								<TableCell />
 								<TableCell />
-								<TableCell />
 								<TableCell align="right">
 									<h4>
 										<span>{pluralize(store.list.length)}</span>
 									</h4>
 								</TableCell>
+								<TableCell />
 
 								<TableCell align="right">
 									<CreateTodo />
@@ -64,9 +64,7 @@ export const Tasks = props => {
 						</TableHead>
 						<TableBody>
 							<TableRow>
-								<TableCell>
-									<p> </p>
-								</TableCell>
+								<TableCell />
 								<TableCell>
 									<h3>User</h3>
 								</TableCell>
@@ -77,10 +75,10 @@ export const Tasks = props => {
 									<h3>Remind</h3>
 								</TableCell>
 								<TableCell align="right">
-									<h3>Added</h3>
+									<h3>Date Added</h3>
 								</TableCell>
 								<TableCell align="right">
-									<h3>Due</h3>
+									<h3>Date Due</h3>
 								</TableCell>
 								<TableCell align="right">
 									<h3> </h3>
