@@ -84,7 +84,6 @@ export const SignUp = props => {
 		} else {
 			value = e.target.checked;
 		}
-
 		setFormValues({
 			...formValues,
 			[key]: value
@@ -184,15 +183,7 @@ export const SignUp = props => {
 							/>
 						</Grid>
 					</Grid>
-
-					<Button
-						type="submit"
-						// component={Link}
-						// to="/usercreated"
-						fullWidth
-						variant="contained"
-						color="primary"
-						className={classes.submit}>
+					<Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit}>
 						Sign Up
 					</Button>
 
