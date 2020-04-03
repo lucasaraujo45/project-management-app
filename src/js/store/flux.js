@@ -63,13 +63,37 @@ const getState = ({ getStore, getActions, setStore }) => {
 				let store = getStore();
 
 				// This should happen in the .then() of the fetch after you have successfully update the database
-				let username = store.users.filter(user => user.id === todoObject.user)[0].name;
+				let username = store.users.filter(user => user.id === todoObject.user)[0].id;
 				todoObject.user = username;
 
 				store.list.push(todoObject);
 				setStore({ store });
 
 				// Here , you should requery the database and hydrate the store
+			},
+			sendTasktoDB: data => {
+				const { text, createdDate, dueDate, user } = data;
+				return fetch(`https://3000-c4de9fdb-9f99-48bd-861e-e57ba5f40b60.ws-us02.gitpod.io/todo/${user}`, {
+					method: "POST",
+					headers: { "Content-Type": "application/json" },
+					body: JSON.stringify({
+						text: text,
+						createdDate: createdDate,
+						dueDate: dueDate
+					})
+				})
+					.then(function(response) {
+						if (!response.ok) {
+							throw Error(response.statusText);
+						}
+						return response.json();
+					})
+					.then(result => {
+						setStore(result);
+					})
+					.catch(function(error) {
+						console.log("Looks like there was a problem: \n", error);
+					});
 			},
 			completeTodo: id => {
 				let store = getStore();
@@ -121,30 +145,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 						setStore(result);
 						// console.log(result);
 						localStorage.setItem("project-man-app", JSON.stringify(result));
-					})
-					.catch(function(error) {
-						console.log("Looks like there was a problem: \n", error);
-					});
-			},
-			sendTasktoDB: data => {
-				const { text, createdDate, dueDate, user } = data;
-				return fetch(`https://3000-c4de9fdb-9f99-48bd-861e-e57ba5f40b60.ws-us02.gitpod.io/todo/${user}`, {
-					method: "POST",
-					headers: { "Content-Type": "application/json" },
-					body: JSON.stringify({
-						text: text,
-						createdDate: createdDate,
-						dueDate: dueDate
-					})
-				})
-					.then(function(response) {
-						if (!response.ok) {
-							throw Error(response.statusText);
-						}
-						return response.json();
-					})
-					.then(result => {
-						setStore(result);
 					})
 					.catch(function(error) {
 						console.log("Looks like there was a problem: \n", error);
