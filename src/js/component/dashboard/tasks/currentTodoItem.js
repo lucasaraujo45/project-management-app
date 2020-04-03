@@ -21,10 +21,10 @@ export const CurrentTodoItem = () => {
 	let todayDate = startOfToday();
 	format(todayDate, "MMMM do yyyy");
 	console.log(todayDate);
-
+	const test2 = store.list.filter(item => item.complete === false);
 	return (
 		<>
-			{store.list.map((item, index) => {
+			{test2.map((item, index) => {
 				return (
 					<TableRow key={index}>
 						<TableCell>

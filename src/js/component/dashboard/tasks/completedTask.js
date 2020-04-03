@@ -24,6 +24,8 @@ export const CompletedTasks = () => {
 	const currentTodo = React.createRef();
 	const classes = useStyles();
 	const pluralize = count => (count > 1 ? `There are ${count} completed tasks` : `There is ${count} completed task`);
+	const test = store.list.filter(item => item.complete === true);
+	console.log("filter", test);
 	return (
 		<Card borderRadius={16} className={classes.card} variant="outlined">
 			<div className="m-4">
@@ -36,11 +38,11 @@ export const CompletedTasks = () => {
 					</Grid>
 				</Grid>
 				<ul className="list-unstyled">
-					{store.completed.map((item, index) => {
+					{test.map((item, index) => {
 						return (
 							<li className={item.alarm ? "todoItem alarm" : "todoItem"} key={index}>
 								<AssignmentTurnedInIcon />
-								<span className="ml-5 itemText">{item.todo}</span>
+								<span className="ml-5 itemText">{item.text}</span>
 								<IconButton className="float-right mr-4">
 									<DeleteForeverIcon
 										className="checkmark mt-2"

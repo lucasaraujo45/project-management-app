@@ -1,3 +1,5 @@
+import { publicDecrypt } from "crypto";
+
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
@@ -73,36 +75,55 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			sendTasktoDB: data => {
 				const { text, createdDate, dueDate, user } = data;
-				return fetch(`https://3000-c4de9fdb-9f99-48bd-861e-e57ba5f40b60.ws-us02.gitpod.io/todo/${user}`, {
-					method: "POST",
-					headers: { "Content-Type": "application/json" },
-					body: JSON.stringify({
-						text: text,
-						createdDate: createdDate,
-						dueDate: dueDate
+				return (
+					fetch(`https://3000-c4de9fdb-9f99-48bd-861e-e57ba5f40b60.ws-us02.gitpod.io/todo/${user}`, {
+						method: "POST",
+						headers: { "Content-Type": "application/json" },
+						body: JSON.stringify({
+							text: text,
+							createdDate: createdDate,
+							dueDate: dueDate
+						})
 					})
+						// .then(function(response) {
+						// 	if (!response.ok) {
+						// 		throw Error(response.statusText);
+						// 	}
+						// 	return response.json();
+						// })
+						// .then(result => {
+						// 	setStore(result);
+						// })
+						.then(() => getActions().loadTodos())
+						.catch(function(error) {
+							console.log("Looks like there was a problem: \n", error);
+						})
+				);
+			},
+			completeTodo: id => {
+				console.log("token", getStore().token);
+				console.log("id", id);
+				fetch(`https://3000-c4de9fdb-9f99-48bd-861e-e57ba5f40b60.ws-us02.gitpod.io/todo/${id}`, {
+					method: "PUT",
+					headers: {
+						"Content-Type": "application/json",
+						"x-access-token": getStore().token
+					}
 				})
-					.then(function(response) {
-						if (!response.ok) {
-							throw Error(response.statusText);
-						}
-						return response.json();
-					})
-					.then(result => {
-						setStore(result);
+					.then(() => {
+						getActions().loadTodos();
 					})
 					.catch(function(error) {
 						console.log("Looks like there was a problem: \n", error);
 					});
-			},
-			completeTodo: id => {
-				let store = getStore();
-				store.completed.push(store.list[id]);
-				store.list = store.list.filter((el, index) => {
-					return id !== index;
-				});
-				console.log(store.complete);
-				setStore({ store });
+				// let store = getStore();
+				// store.completed.push(store.list[id]);
+				// store.list = store.list.filter((el, index) => {
+				// 	return id !== index;
+				// });
+
+				// console.log(store.complete);
+				// setStore({ store });
 			},
 			setalarm: (index, element) => {
 				let store = getStore();
