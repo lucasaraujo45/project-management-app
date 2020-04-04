@@ -20,6 +20,8 @@ import "react-day-picker/lib/style.css";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
 import { format } from "date-fns";
 import { startOfToday } from "date-fns";
+import "./tasks.scss";
+
 //component that adds task to tasklist(modal)
 function parseDate(str, format, locale) {
 	const parsed = dateFnsParse(str, format, new Date(), { locale });
@@ -179,6 +181,7 @@ export const CreateTodo = () => {
 									className="form-control"
 									type="text"
 									name="text"
+									placeholder="Add Task"
 									onChange={e => handleInputChange(e)}
 									ref={newTodo}
 								/>

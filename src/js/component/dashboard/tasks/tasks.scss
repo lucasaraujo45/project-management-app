@@ -111,3 +111,7 @@ float: right;
 .todoitem{
     margin-bottom: 10px;
 }
+
+::placeholder { /* Chrome/Opera/Safari */
+  color:red;
+}
