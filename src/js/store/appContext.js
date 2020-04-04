@@ -23,6 +23,7 @@ const injectContext = PassedComponent => {
 
 		useEffect(() => {
 			// state.actions.signup();
+			state.actions.checkForToken();
 			state.actions.loadUsers();
 			state.actions.loadTodos();
 			/**

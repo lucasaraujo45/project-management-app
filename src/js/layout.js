@@ -1,19 +1,29 @@
+<<<<<<< HEAD
 import React, { useContext } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
 import { Context } from "./store/appContext";
+=======
+import React, { useContext, useEffect } from "react";
+import { BrowserRouter, Route, Redirect, Switch } from "react-router-dom";
+import ScrollToTop from "./component/scrollToTop";
+import history from "./history";
+
+>>>>>>> 524b036c8ff38d24de0797f016b916b5681bf2e6
 // import { Home } from "./views/home";
 import { Landing } from "./views/landing";
 import { LoginMaterial } from "./views/loginMaterial";
 import { SignUp } from "./views/signup";
 import { Dashboard } from "./views/dashboard";
-import injectContext from "./store/appContext";
+import injectContext, { Context } from "./store/appContext";
 
 import { Navbar } from "./component/navbar";
 import { RedirectNewuser } from "./component/newUserRedirect";
 import { RedirectLogin } from "./component/loginRedirect";
 import { Footer } from "./component/footer";
 import { Calendar } from "./component/calendar/calendar";
+
+import PropTypes from "prop-types";
 
 //create your first component
 const Layout = () => {
@@ -22,9 +32,11 @@ const Layout = () => {
 	const basename = process.env.BASENAME || "";
 	const { store, actions } = useContext(Context);
 
+	const { store, actions } = useContext(Context);
+
 	return (
 		<div className="d-flex flex-column h-100">
-			<BrowserRouter>
+			<BrowserRouter history={history}>
 				<ScrollToTop>
 					{store.token == null || store.token == undefined ? <Navbar /> : null}
 					<Switch>
@@ -33,8 +45,7 @@ const Layout = () => {
 						<Route path="/login" component={LoginMaterial} />
 						<Route path="/usercreated" component={RedirectNewuser} />
 						<Route path="/loginsuccess" component={RedirectLogin} />
-						<Route path="/dashboard" component={Dashboard} />
-						<Route path="/calendar" component={Calendar} />
+						<ProtectedRoute path="/dashboard" component={Dashboard} />
 						<Route render={() => <h1>Not found!</h1>} />
 					</Switch>
 					<Footer />
@@ -42,6 +53,26 @@ const Layout = () => {
 			</BrowserRouter>
 		</div>
 	);
+};
+
+const ProtectedRoute = ({ component: Component, ...rest }) => {
+	const { store, actions } = useContext(Context);
+	return (
+		<Route
+			{...rest}
+			render={props =>
+				store.token !== null ? (
+					<Component {...rest} {...props} />
+				) : (
+					<Redirect to="/login" {...rest} {...props} />
+				)
+			}
+		/>
+	);
+};
+
+ProtectedRoute.propTypes = {
+	component: PropTypes.component
 };
 
 export default injectContext(Layout);

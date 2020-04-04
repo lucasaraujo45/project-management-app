@@ -102,7 +102,8 @@ export const CreateTodo = () => {
 	const createNewTodo = e => {
 		e.preventDefault();
 
-		actions.addTodo(formValues);
+		// actions.addTodo(formValues);
+		// console.log('user is ',formValues.user)
 		actions.sendTasktoDB(formValues);
 		toggleModal();
 	};
