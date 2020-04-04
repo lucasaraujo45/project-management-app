@@ -1,5 +1,7 @@
 import { publicDecrypt } from "crypto";
 
+const apiHost = "https://3000-c4de9fdb-9f99-48bd-861e-e57ba5f40b60.ws-us02.gitpod.io";
+
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
@@ -30,7 +32,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 		},
 		actions: {
 			loadUsers: () => {
-				fetch("https://3000-c4de9fdb-9f99-48bd-861e-e57ba5f40b60.ws-us02.gitpod.io/user") // fetching users from API --- @EddyKudo
+				fetch(apiHost + "/user") // fetching users from API --- @EddyKudo
 					.then(function(response) {
 						if (!response.ok) {
 							throw Error(response.statusText);
@@ -46,7 +48,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					});
 			},
 			loadTodos: () => {
-				fetch("https://3000-c4de9fdb-9f99-48bd-861e-e57ba5f40b60.ws-us02.gitpod.io/todo")
+				fetch(apiHost + "/todo")
 					.then(function(response) {
 						if (!response.ok) {
 							throw Error(response.statusText);
@@ -54,29 +56,43 @@ const getState = ({ getStore, getActions, setStore }) => {
 						return response.json();
 					})
 					.then(data => {
-						//console.log(data);
+						console.log(data);
 						setStore({ list: data });
 					})
 					.catch(function(error) {
 						console.log("Looks like there was a problem: \n", error);
 					});
 			},
-			addTodo: (todoObject, element) => {
+			// addTodo: (todoObject, element) => {
+			// 	let store = getStore();
+
+			// 	// This should happen in the .then() of the fetch after you have successfully update the database
+
+			// 	todoObject.user = getActions().getUsername(todoObject.user);
+			// 	console.log("added todo for user: ", todoObject.user);
+
+			// 	store.list.push(todoObject);
+			// 	setStore({ store });
+
+			// 	// Here , you should requery the database and hydrate the store
+			// },
+			getUsername: userId => {
 				let store = getStore();
+				let username = "";
 
-				// This should happen in the .then() of the fetch after you have successfully update the database
-				let username = store.users.filter(user => user.id === todoObject.user)[0].id;
-				todoObject.user = username;
+				if (store.users.length > 0 && store.users !== undefined) {
+					username = store.users.filter(user => user.id === userId)[0].name;
+				} else {
+					username = "Unknown";
+				}
 
-				store.list.push(todoObject);
-				setStore({ store });
-
-				// Here , you should requery the database and hydrate the store
+				return username;
 			},
 			sendTasktoDB: data => {
 				const { text, createdDate, dueDate, user } = data;
+				alert("userid is " + user);
 				return (
-					fetch(`https://3000-c4de9fdb-9f99-48bd-861e-e57ba5f40b60.ws-us02.gitpod.io/todo/${user}`, {
+					fetch(`${apiHost}/todo/${user}`, {
 						method: "POST",
 						headers: { "Content-Type": "application/json" },
 						body: JSON.stringify({
@@ -103,7 +119,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			completeTodo: id => {
 				console.log("token", getStore().token);
 				console.log("id", id);
-				fetch(`https://3000-c4de9fdb-9f99-48bd-861e-e57ba5f40b60.ws-us02.gitpod.io/todo/${id}`, {
+				fetch(`${apiHost}/todo/${id}`, {
 					method: "PUT",
 					headers: {
 						"Content-Type": "application/json",
@@ -111,6 +127,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					}
 				})
 					.then(() => {
+						console.log("completed successfully");
 						getActions().loadTodos();
 					})
 					.catch(function(error) {
@@ -135,10 +152,21 @@ const getState = ({ getStore, getActions, setStore }) => {
 				store.list[index].alarm = false;
 				setStore({ store });
 			},
-			removeItem: index => {
-				let store = getStore();
-				store.completed.splice(index, 1);
-				setStore({ store });
+			removeItem: id => {
+				fetch(`${apiHost}/todo/${id}`, {
+					method: "DELETE",
+					headers: {
+						"Content-Type": "application/json",
+						"x-access-token": getStore().token
+					}
+				})
+					.then(() => {
+						console.log("deleted successfully");
+						getActions().loadTodos();
+					})
+					.catch(function(error) {
+						console.log("Looks like there was a problem: \n", error);
+					});
 			},
 			logout: () => {
 				setStore({ token: null });
@@ -149,7 +177,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			loginMat: data => {
 				const { email, password } = data;
-				return fetch("https://3000-c4de9fdb-9f99-48bd-861e-e57ba5f40b60.ws-us02.gitpod.io/login", {
+				return fetch(apiHost + "/login", {
 					method: "GET",
 					headers: {
 						"Content-Type": "application/json",
@@ -164,7 +192,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 					.then(result => {
 						setStore(result);
-						// console.log(result);
+						console.log("token " + result);
 						localStorage.setItem("project-man-app", JSON.stringify(result));
 					})
 					.catch(function(error) {
@@ -173,7 +201,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			signup: data => {
 				const { name, last, password, email, phone, todos } = data;
-				return fetch("https://3000-c4de9fdb-9f99-48bd-861e-e57ba5f40b60.ws-us02.gitpod.io/user", {
+				return fetch(apiHost + "/user", {
 					method: "POST",
 					headers: { "Content-Type": "application/json" },
 					body: JSON.stringify({
@@ -197,8 +225,17 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.catch(function(error) {
 						console.log("Looks like there was a problem: \n", error);
 					});
+			},
+			checkForToken: () => {
+				let tokenCheck = JSON.parse(localStorage.getItem("project-man-app"));
+
+				if (tokenCheck !== null) {
+					// set current user data to store
+					setStore(tokenCheck);
+				}
 			}
 		}
 	};
 };
+
 export default getState;

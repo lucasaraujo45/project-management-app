@@ -1,7 +1,7 @@
 import React from "react";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import { SideBar } from "../component/dashboard/sidebar/sidebar";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, useRouteMatch } from "react-router-dom";
 import { Calendar } from "../component/calendar/calendar";
 import { Chat } from "../component/chat";
 import { Users } from "../component/existingUsers";
@@ -30,6 +30,7 @@ const useStyles = makeStyles(theme => ({
 
 export const Dashboard = ({ match }) => {
 	const classes = useStyles();
+	console.log("match is: ", match);
 	return (
 		<div className={classes.root}>
 			<SideBar />

@@ -21,10 +21,10 @@ export const CurrentTodoItem = () => {
 	let todayDate = startOfToday();
 	format(todayDate, "MMMM do yyyy");
 	console.log(todayDate);
-	const test2 = store.list.filter(item => item.complete === false);
+	const todos = store.list.filter(item => item.complete === false);
 	return (
 		<>
-			{test2.map((item, index) => {
+			{todos.map((item, index) => {
 				return (
 					<TableRow key={index}>
 						<TableCell>
@@ -34,7 +34,7 @@ export const CurrentTodoItem = () => {
 							<span
 								className="itemText"
 								onClick={item.alarm ? () => actions.unsetalarm(index) : () => actions.setalarm(index)}>
-								{item.user}
+								{actions.getUsername(item.user_id)}
 							</span>
 						</TableCell>
 						<TableCell>
@@ -60,7 +60,7 @@ export const CurrentTodoItem = () => {
 						<TableCell align="right">
 							<Button
 								className="ml-1 mr-1"
-								onClick={() => actions.completeTodo(index)}
+								onClick={() => actions.completeTodo(item.id)}
 								data-toggle="tooltip"
 								data-placement="bottom"
 								variant="outlined"
