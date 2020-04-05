@@ -34,6 +34,7 @@ export const Tasks = props => {
 	const bull = <span className={classes.bullet}>•</span>;
 
 	const { store, actions } = useContext(Context);
+	const todosList = store.list.filter(item => item.complete === false);
 
 	const pluralize = count => (count > 1 ? `There are ${count} tasks` : `There is ${count} task`);
 
@@ -52,7 +53,7 @@ export const Tasks = props => {
 								<TableCell />
 								<TableCell align="right">
 									<h4>
-										<span>{pluralize(store.list.length)}</span>
+										<span>{pluralize(todosList.length)}</span>
 									</h4>
 								</TableCell>
 								<TableCell />

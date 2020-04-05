@@ -110,9 +110,10 @@ export const SideBar = () => {
 	const classes = useStyles();
 	const theme = useTheme();
 	const [open, setOpen] = React.useState(false);
-	const pluralize = count => (count > 1 ? `${count}` : `${count}`);
 	const { store, actions } = useContext(Context);
+	const todosList = store.list.filter(item => item.complete === false);
 
+	const pluralize = count => (count > 1 ? `${count}` : `${count}`);
 	const [anchorEl, setAnchorEl] = React.useState(null);
 
 	const handlePopoverOpen = event => {
@@ -181,7 +182,7 @@ export const SideBar = () => {
 					<Box ml={"auto"}>
 						<IconButton aria-label="show 3 new notifications" color="inherit">
 							<Badge
-								badgeContent={<span className="float-right">{pluralize(store.list.length)}</span>}
+								badgeContent={<span className="float-right">{pluralize(todosList.length)}</span>}
 								color="secondary">
 								<NotificationsIcon
 									aria-owns={openPop ? "mouse-over-popover" : undefined}
