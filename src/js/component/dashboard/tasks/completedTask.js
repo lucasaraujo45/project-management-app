@@ -34,7 +34,7 @@ export const CompletedTasks = () => {
 						<h2>Completed Tasks</h2>
 					</Grid>
 					<Grid item xs={5}>
-						<span className="float-right">{pluralize(store.completed.length)}</span>
+						<span className="float-right">{pluralize(todos.length)}</span>
 					</Grid>
 				</Grid>
 				<ul className="list-unstyled">
