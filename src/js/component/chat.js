@@ -21,7 +21,7 @@ const Messages = props => {
 						content_copy
 					</i>
 				</a>{" "}
-				<div className="innermsg">{m[1]}</div>
+				<div className="innermsg float-right mx-1">{m[1]}</div>
 			</li>
 		) : (
 			<li className="update">{m[1]}</li>
@@ -31,7 +31,7 @@ const Messages = props => {
 
 const Online = props =>
 	props.data.map(m => (
-		<li key={props.id} id={m[0]}>
+		<li className="mr-auto" key={props.id} id={m[0]}>
 			{m[1]}
 		</li>
 	));
@@ -126,17 +126,37 @@ export const Chat = () => {
 	};
 
 	return id !== "" ? (
-		<section
-			style={{
-				display: "flex",
-				flexDirection: "column",
-				width: "60%",
-				margin: "auto"
-			}}>
-			<ul id="messages">
-				<Messages data={messages} />
-			</ul>
-			<ul id="online">
+		<div className="w-100">
+			<section
+				className="float-left"
+				style={{
+					display: "flex",
+					flexDirection: "column",
+					width: "60%",
+					margin: "auto"
+				}}>
+				<ul id="messages">
+					<Messages data={messages} />
+				</ul>
+
+				<div id="sendform">
+					<form onSubmit={e => handleSend(e)} style={{ display: "flex" }}>
+						<input className="w-100" id="m" />
+						{width > 1000 ? (
+							<button style={{ width: "100px" }} type="submit">
+								Send Message
+							</button>
+						) : (
+							<button style={{ width: "50px" }}>
+								<i style={{ fontSize: "15px" }} className="material-icons">
+									send
+								</i>
+							</button>
+						)}
+					</form>
+				</div>
+			</section>
+			<ul className="float-right" id="online">
 				{" "}
 				<a onClick={() => logOut()} href="#">
 					<div style={{ float: "right" }}>Quit chat ❌</div>
@@ -144,23 +164,7 @@ export const Chat = () => {
 				{online ? "❤️ You are Online" : "💛 You are Offline"} <hr />
 				<Online data={onlineList} />{" "}
 			</ul>
-			<div id="sendform">
-				<form onSubmit={e => handleSend(e)} style={{ display: "flex" }}>
-					<input id="m" />
-					{width > 1000 ? (
-						<button style={{ width: "100px" }} type="submit">
-							Send Message
-						</button>
-					) : (
-						<button style={{ width: "50px" }}>
-							<i style={{ fontSize: "15px" }} className="material-icons">
-								send
-							</i>
-						</button>
-					)}
-				</form>
-			</div>
-		</section>
+		</div>
 	) : (
 		<div style={{ textAlign: "center", margin: "30vh auto", width: "70%" }}>
 			<form onSubmit={event => handleSubmit(event)}>
