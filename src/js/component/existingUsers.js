@@ -8,13 +8,16 @@ import Fade from "@material-ui/core/Fade";
 import Button from "@material-ui/core/Button";
 import ListRoundedIcon from "@material-ui/icons/ListRounded";
 import Box from "@material-ui/core/Box";
+import Paper from "@material-ui/core/Paper";
+import Grid from "@material-ui/core/Grid";
 
 const useStyles = makeStyles(theme => ({
 	parag: {
+		textAlign: "left",
 		color: "black"
 	},
 	userIcon: {
-		fontSize: "120px",
+		fontSize: "100px",
 		float: "right"
 	},
 	button: {
@@ -25,11 +28,16 @@ const useStyles = makeStyles(theme => ({
 		alignItems: "center",
 		justifyContent: "center"
 	},
-	paper: {
+	papermodal: {
 		backgroundColor: theme.palette.background.paper,
 		border: "2px solid #000",
 		boxShadow: theme.shadows[5],
 		padding: theme.spacing(2, 4, 3)
+	},
+	paper: {
+		padding: theme.spacing(2),
+		textAlign: "center",
+		color: theme.palette.text.secondary
 	}
 }));
 
@@ -49,29 +57,40 @@ export const Users = props => {
 	return (
 		<div className="w-100">
 			{store.users.length > 0 ? (
-				<ul className="mx-auto list-unstyled">
+				<Grid container direction="column" justify="center" alignItems="center">
 					{store.users.map((user, index) => (
-						<li key={index}>
-							<div className={classes.userIcon}>
-								<i className="fas fa-user pl-4" />
-								<Box display="flex" alignItems="flex-end" justifyContent="flex-end">
-									<Button
-										variant="contained"
-										color="primary"
-										onClick={e => handleOpen(index)}
-										className={classes.button}
-										startIcon={<ListRoundedIcon />}>
-										{user.name} tasks
-									</Button>
-								</Box>
-							</div>
-							<p className={classes.parag}>
-								Name: {user.name} {user.last}
-							</p>
-							<p className={classes.parag}>Company_ID: {user.id} </p>
-							<p className={classes.parag}>email: {user.email} </p>
-							<p className={classes.parag}>Phone: {user.phone}</p>
-						</li>
+						<Grid item xs={12} key={index} className="w-100 my-2">
+							<Paper className={classes.paper}>
+								<div className={classes.userIcon}>
+									<i className="fas fa-user pl-4" />
+									<Box display="flex" alignItems="flex-end" justifyContent="flex-end">
+										<Button
+											variant="contained"
+											color="primary"
+											onClick={e => handleOpen(index)}
+											className={classes.button}
+											startIcon={<ListRoundedIcon />}>
+											{user.name} tasks
+										</Button>
+									</Box>
+								</div>
+								<p className={classes.parag}>
+									<b>Name:</b>{" "}
+									<i>
+										{user.name} {user.last}
+									</i>
+								</p>
+								<p className={classes.parag}>
+									<b>Company_ID:</b> <i>{user.id}</i>{" "}
+								</p>
+								<p className={classes.parag}>
+									<b>email:</b> <i>{user.email}</i>{" "}
+								</p>
+								<p className={classes.parag}>
+									<b>Phone:</b> <i>{user.phone}</i>{" "}
+								</p>
+							</Paper>
+						</Grid>
 					))}
 					<Modal
 						aria-labelledby="transition-modal-title"
@@ -85,7 +104,7 @@ export const Users = props => {
 							timeout: 500
 						}}>
 						<Fade in={open}>
-							<div className={classes.paper}>
+							<div className={classes.papermodal}>
 								<h2 id="transition-modal-title">Tasks list</h2>
 								<p className={classes.parag} id="transition-modal-description">
 									{store.users[selectedUser].todos.map((task, i) => (
@@ -98,7 +117,7 @@ export const Users = props => {
 							</div>
 						</Fade>
 					</Modal>
-				</ul>
+				</Grid>
 			) : (
 				<p className={classes.parag}>No Users</p>
 			)}
