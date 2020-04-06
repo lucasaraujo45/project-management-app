@@ -7,10 +7,10 @@ export const Landing = () => (
 	<div className="backgroundDiv">
 		<div className="container landingMainDiv mt-5">
 			<Grid container spacing={4}>
-				<Grid item xs={6}>
+				<Grid item xs={12} md={6}>
 					<img src={Logo} width="100%" alt="Dashboard" />
 				</Grid>
-				<Grid item xs={6}>
+				<Grid item xs={12} md={6}>
 					<h2 className="firsthead">
 						The best app to increase <br />
 						your productivity

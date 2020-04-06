@@ -8,6 +8,28 @@
     background-repeat: no-repeat;
 }
 
+@media screen and (max-width: 992px) {
+  .backgroundDiv {
+    background-image: url("../img/backroundimg.jpeg");
+    background-position: left 30px bottom 20px;
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+    background-repeat: no-repeat;
+  }
+}
+@media screen and (max-width: 900px) {
+  .backgroundDiv {
+    background-image: url("../img/backroundimg.jpeg");
+    background-position: left -50px;
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+    background-repeat: no-repeat;
+    background-size: 105% 310%;
+  }
+}
+
 .landingMainDiv h2, p{
     color: white;
     margin-bottom: 25px;
@@ -17,4 +39,10 @@
     color: white
 }
 
-
+@media screen 
+  and (device-width: 320px) 
+  and (device-height: 640px) 
+  and (orientation: portrait) {
+body { width: 100%; max-width: 100%; height: auto;
+ }
+}
