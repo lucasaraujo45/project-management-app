@@ -5,6 +5,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import AccountCircleRoundedIcon from "@material-ui/icons/AccountCircleRounded";
 import Divider from "@material-ui/core/Divider";
 import grey from "@material-ui/core/colors/grey";
+import { Link } from "react-router-dom";
 
 export const ProfileMenu = () => {
 	const [anchorEl, setAnchorEl] = React.useState(null);
@@ -24,10 +25,14 @@ export const ProfileMenu = () => {
 			</Button>
 			<Menu id="simple-menu" anchorEl={anchorEl} keepMounted open={Boolean(anchorEl)} onClose={handleClose}>
 				<MenuItem onClick={handleClose}>
-					<Button href="/dashboard/profile">Profile</Button>
+					<Button component={Link} to="/dashboard/profile">
+						Profile
+					</Button>
 				</MenuItem>
 				<MenuItem onClick={handleClose}>
-					<Button href="/dashboard/users">My Team</Button>
+					<Button component={Link} to="/dashboard/users">
+						My Team
+					</Button>
 				</MenuItem>
 				<Divider />
 				<MenuItem onClick={handleClose}>
