@@ -173,7 +173,7 @@ export const CreateTodo = () => {
 				<div className="taskModal">
 					<Grid spacing={3}>
 						<Grid>
-							<h1>Add Task</h1>
+							<h1>Add new task</h1>
 						</Grid>
 						<Grid>
 							<form onSubmit={createNewTodo} className="mb-5">
@@ -181,7 +181,7 @@ export const CreateTodo = () => {
 									className="form-control"
 									type="text"
 									name="text"
-									placeholder="Add Task"
+									placeholder="Type what needs to be comleted..."
 									onChange={e => handleInputChange(e)}
 									ref={newTodo}
 								/>

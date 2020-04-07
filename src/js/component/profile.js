@@ -35,7 +35,7 @@ export const Profile = () => {
 					/>
 					<CardContent>
 						<Typography gutterBottom variant="h5" component="h2">
-							Eduard Chiticari
+							Eduard WebDeveloper
 						</Typography>
 						<Typography variant="body2" color="textSecondary" component="p">
 							Some text about user. Hobbies, favorite places, motivation!

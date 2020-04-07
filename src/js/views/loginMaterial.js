@@ -18,6 +18,9 @@ import { useHistory } from "react-router-dom";
 function Copyright() {
 	return (
 		<Typography variant="body2" color="textSecondary" align="center">
+			<div>
+				To <b>LOGIN</b> use edu@rd.io Pass123
+			</div>
 			{"Copyright © "}
 			<Link color="inherit" href="https://github.com/EddyKudo">
 				Your Website

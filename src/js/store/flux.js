@@ -1,6 +1,6 @@
 import { publicDecrypt } from "crypto";
 
-const apiHost = "https://3000-c4de9fdb-9f99-48bd-861e-e57ba5f40b60.ws-us02.gitpod.io";
+const apiHost = "https://proj-man-app-backend.herokuapp.com/";
 
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
