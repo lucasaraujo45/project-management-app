@@ -1,3 +1,5 @@
+![](https://github.com/lucasaraujo45/project-management-app/blob/master/src/js/component/dashboard/sidebar/lightlogo.png)
+
 Final project for 4Geeks Acedemy. Built with Reactjs⚛️, Flux, Python🐍, SQLAlchemy, Flask
 
 This project is a project management progressive web app. Similiar to monday.com. 
