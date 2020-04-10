@@ -33,6 +33,7 @@ import { CompletedTasks } from "../tasks/completedTask";
 import { Calendar } from "../../calendar/calendar";
 import { Box } from "@material-ui/core";
 import { Context } from "../../../store/appContext";
+import lightlogo from "./lightlogo.png";
 
 const drawerWidth = 240;
 
@@ -176,9 +177,7 @@ export const SideBar = () => {
 						})}>
 						<DoubleArrowRoundedIcon />
 					</IconButton>
-					<Typography variant="h6" noWrap>
-						Project Management Tool
-					</Typography>
+					<img src={lightlogo} alt="Logo" />
 					<Box ml={"auto"}>
 						<IconButton aria-label="show 3 new notifications" color="inherit">
 							<Badge
