@@ -35,6 +35,8 @@ check material-ui's documentation at material-ui.com
 * `componentDidMount()` was replaced by `useEffect({}, [])` - It runs at mount thanks to the second parameter (`[]`).
 * `Actions` and `Store` still work the same way.
 
+
+
 ```jsx
 // Previous "Class Oriented"
 export class Demo extends React.Component {
