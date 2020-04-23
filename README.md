@@ -69,5 +69,5 @@ const MyComponentSuper = () => {
 
 ```sh
 $ npm run deploy
-```
+
 Note: You will need to [configure github pages for the branch gh-pages](https://help.github.com/articles/configuring-a-publishing-source-for-github-pages/#enabling-github-pages-to-publish-your-site-from-master-or-gh-pages)
