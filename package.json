@@ -76,7 +76,7 @@
 		"@material-ui/icons": "^4.9.1",
 		"@withvoid/melting-pot": "^1.6.0",
 		"bootstrap": "^4.4.1",
-		"chart.js": "^2.9.3",
+		"chart.js": "^2.9.4",
 		"date-fns": "^2.11.1",
 		"immer": "^6.0.3",
 		"prop-types": "^15.7.2",
